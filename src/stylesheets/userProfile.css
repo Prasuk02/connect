@@ -1,0 +1,128 @@
+.profileUserName{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1f1f1f;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.profile_Fullname{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #111;
+    font-weight: 600;
+    font-size: 14.5px;
+    margin-top: 10px;
+}
+
+.bioData{
+    font-size: 14px;
+}
+
+.bioLink{
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #000946;
+}
+
+.fontType{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.imgBox{
+    width: 32.90%;
+    height: 315px;
+    margin-top: 4px;
+    margin-right: 4px;
+    position: relative;
+}
+
+.postPreviews{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.imgBox:hover{
+    cursor: pointer;
+}
+
+.imgBox:hover .hoverBox{
+    visibility: visible;
+}
+
+.imgBox:hover .imageCaptionText{
+    visibility: visible;
+}
+
+.imgBox:hover .imageLike_comment{
+    visibility: visible;
+}
+
+.hoverBox{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    background-color: #000;
+    opacity: 0.5;
+    visibility: hidden;
+}
+
+.imageCaption{
+    position: absolute;
+    bottom: 5px;
+    padding: 10px 13px;
+    opacity: 0.78;
+    overflow: hidden;
+    max-height: 90px;
+    width: 100%;
+}
+
+.imageCaptionText{
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    line-height: 19px;
+    text-align: justify;
+    font-weight: 500;
+    visibility: hidden;
+}
+
+.imageLike_comment{
+    position: absolute;
+    top: 50%;
+    margin: auto;
+    color: white;
+    opacity: 0.87;
+    width: 100%;
+    transform: translate(0%, -50%);
+    visibility: hidden;
+}
+
+.followBtnUserProfile{
+    font-size: 14px;
+    background-color: #e3eeff;
+    color: #0064ff;
+    padding: 3px 7px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.followingBtnUserProfile{
+    font-size: 13.5px;
+    background-color: #e0e0e0;
+    color: #111111fa;
+    padding: 3px 7px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.requestBtnUserProfile{
+    font-size: 13.5px;
+    background-color: #ffb9c04d;
+    color: #dc3545;
+    padding: 3px 7px;
+    border-radius: 5px;
+    font-weight: 600;
+}

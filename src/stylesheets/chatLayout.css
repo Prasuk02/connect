@@ -1,0 +1,97 @@
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.senderHeading{
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.friendsList{
+    overflow: hidden auto;
+}
+
+.friendsList::-webkit-scrollbar , .msgBox::-webkit-scrollbar{
+    width: 7px;
+}
+
+.friendsList::-webkit-scrollbar-track, .msgBox::-webkit-scrollbar-track{
+    background-color: #d3d3d3;
+}
+
+.friendsList::-webkit-scrollbar-thumb, .msgBox::-webkit-scrollbar-thumb{
+    background-color: #999999;
+    border-radius: 10px;
+}
+
+.msgIcon{
+    font-size: 50px;
+}
+
+.text1{
+    font-size: 21px;
+    margin-top: 5px;
+}
+
+.text2{
+    font-size: 14px;
+    color: #757575;
+    margin-top: 3px;
+}
+
+.text3{
+    font-size: 14px;
+    color: rgb(49, 123, 235);
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+.msgInputBox{
+    border: 1px solid #c9c9c9;
+    border-radius: 30px;
+    padding: 0px 20px;
+    height: 50px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.msgInputBox::placeholder{
+    color: #aaa;
+}
+
+.msgInputBox:focus{
+    outline: none;
+    border: 1px solid #a7a7a7;
+}
+
+.sendMsgBtn{
+    background-color: rgb(219, 232, 255);
+    border: none;
+    border-radius: 15px;
+    color: rgb(0, 132, 255);
+    padding: 0px 15px;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 86%;
+    font-size: 14.5px;
+}
+
+.msgTextStyle{
+    border: 1px solid #efefef;
+    border-radius: 18px;
+    padding: 8px 15px;
+    font-size: 14px;
+    max-width: 280px;
+    text-align: justify;
+}
+
+.chatCloseBtn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 25px;
+    opacity: 0.65;
+}
+
+.eachChat:hover{
+    background-color: #eee;
+}

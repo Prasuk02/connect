@@ -1,0 +1,74 @@
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.notifyContainer{
+    width: 30%;
+    height: calc(100vh - 60px);
+    z-index: 3;
+    background-color: white;
+    position: fixed;
+    top: 60px;
+    left: 74px;
+    border: 1px solid #e2e2e2;
+    border-top: none;
+    border-radius: 0px 20px 20px 0px;
+    padding: 20px;
+    overflow: hidden auto;
+}
+
+.notifyContainer::-webkit-scrollbar{
+    width: 7px;
+}
+
+.notifyContainer::-webkit-scrollbar-track{
+    background-color: #ddd;
+}
+
+.notifyContainer::-webkit-scrollbar-thumb{
+    background-color: #aaa;
+    border-radius: 10px;
+}
+
+.textHead{
+    font-size: 20px;
+    color: #111;
+    font-weight: 600;
+}
+
+.notifyPost{
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 3px;
+}
+
+.notifyText{
+    font-size: 14px;
+}
+
+.notifyCloseBtn{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 25px;
+}
+
+.searchInputBox{
+    margin-top: 30px;
+    margin-bottom: 7px;
+    border: none;
+    background-color: #f1f1f1;
+    border-radius: 7px;
+    padding: 10px 17px;
+    font-size: 14px;
+}
+
+.searchInputBox:focus{
+    outline: none;
+}
+
+.searchInputBox::placeholder{
+    color: #999;
+}

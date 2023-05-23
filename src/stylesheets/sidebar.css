@@ -1,0 +1,23 @@
+.moreOptions{
+    position: absolute;
+    bottom: 30px;
+    left: 0px;
+    border: 1px solid #e6e6e6;
+    background-color: rgb(255, 255, 255);
+    width: 180px;
+    border-radius: 5px;
+    display: none;
+}
+
+.moreBtn:hover .moreOptions{
+    display: inline-block;
+}
+
+.moreOptionsItem:hover{
+    background-color: #f1f1f1;
+}
+
+.sidebox:hover{
+    background-color: #f3f3f3;
+    border-radius: 10px;
+}

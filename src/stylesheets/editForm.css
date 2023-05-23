@@ -1,0 +1,85 @@
+.fontType{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.formFullname{
+    font-size: 23px;
+    color: #111;
+    font-weight: 600;
+    text-align: center;
+}
+
+.formUsername{
+    font-size: 15px;
+    color: #333;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.uploadBtn{
+    background-color: #fd3e19;
+    padding: 8px 15px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: antiquewhite;
+    border-radius: 5px;
+}
+
+.msg{
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+}
+
+.msg2{
+    text-align: center;
+    font-size: 12px;
+    color: #555;
+    margin-top: 20px;
+}
+
+.editText{
+    font-size: 23px;
+    font-weight: 600;
+    color: #203030;
+}
+
+.labelEdit{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+    margin-top: 15px;
+    margin-bottom: 4px;
+}
+
+.labelInput{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    font-size: 14px;
+    padding: 7px 10px;
+}
+
+.labelInputTextarea{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    font-size: 14px;
+    padding: 7px 10px;
+    max-height: 70px;
+    min-height: 70px;
+    min-width: 100%;
+    max-width: 100%;
+}
+.labelInputTextarea::-webkit-scrollbar{
+    width: 0px;
+}
+
+.labelInput:focus{
+    outline: none;
+    border: 1px solid #888;
+}

@@ -1,0 +1,20 @@
+.searchInputBoxModal{
+    border: none;
+    background-color: #ffffff;
+    border-radius: 7px;
+    padding: 10px 12px;
+    font-size: 15px;
+    width: 100%;
+}
+
+.searchInputBoxModal:focus{
+    outline: none;
+}
+
+.searchInputBoxModal::placeholder{
+    color: #999;
+}
+
+.profile:hover{
+    background-color: #eee;
+}

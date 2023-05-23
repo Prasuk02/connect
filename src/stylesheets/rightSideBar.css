@@ -1,0 +1,45 @@
+.profileName{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1f1f1f;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.sidebarHeading{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1f1f1f;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.profileFullname{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #777;
+    font-weight: 400;
+    font-size: 12.5px;
+    margin-top: 2px;
+}
+
+.fontType{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.requestBtn{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0064ff;
+    color: white;
+    border: none;
+    padding: 9px 25px;
+    border-radius: 17px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.followBtn{
+    font-size: 13px;
+    background-color: #e3eeff;
+    color: #0064ff;
+    padding: 3px 7px;
+    border-radius: 5px;
+    font-weight: 600;
+}

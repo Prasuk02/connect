@@ -1,0 +1,133 @@
+.background{
+    background-color: rgb(168, 168, 168);
+    background-image: url('https://cdn.dribbble.com/userupload/4274679/file/original-58d8a653c82a15b2df0f4827d93e36d0.png?compress=1&resize=1024x768');
+    background-position: center;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.7;
+    filter: blur(2px) contrast(90%);
+    overflow: hidden;
+}
+
+.main{
+    width: 350px;
+    background-color: transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+
+.loginBox{
+    width: 100%;
+    border-radius: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+}
+
+.instaTypo{
+    width: 50%;
+    margin: 45px auto 30px;
+}
+
+.inputBox{
+    width: 82%;
+    padding: 12px 12px;
+    margin: auto;
+    margin-top: 7px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.inputBox:hover{
+    border: 1px solid #999;
+}
+
+.inputBox:focus{
+    border: 1px solid #666;
+    outline: none;
+}
+
+.loginButton{
+    background-color: #2c95fd;
+    width: 82%;
+    margin: 15px auto 20px;
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
+    color: whitesmoke;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.loginButton:hover{
+    cursor: pointer;
+}
+
+.or{
+    text-align: center;
+    color: #999;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.divider{
+    width: 34%;
+    height: 10px;
+    border-top: 1px solid #bbb;
+}
+
+.forget{
+    color: #395498;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 30px;
+}
+
+.forget:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.box2{
+    border: 1px solid #ddd;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 6px;
+    padding: 15px;
+}
+
+.signup{
+    text-align: center;
+    font-size: 14px;
+}
+
+.googleplay{
+    width: 110px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.microsoft{
+    width: 110px;
+    border-radius: 5px;
+}
+
+.googleplay:hover, .microsoft:hover{
+    cursor: pointer;
+}
+
+/* SIGN UP */
+.terms{
+    font-size: 13px;
+    text-align: justify;
+    color: #555;
+    margin-top: 5px;
+}

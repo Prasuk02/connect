@@ -1,0 +1,29 @@
+.mainContainer{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 26%;
+    height: 60vh;
+    background-color: white;
+    border-radius: 6px;
+    padding: 2px 20px 20px;
+    overflow: hidden auto;
+}
+
+.mainContainer::-webkit-scrollbar{
+    width: 0px;
+}
+
+.heading{
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.modalCloseBtn{
+    font-size:27px;
+    color: #555;
+    position: absolute;
+    top: 0px;
+    right: 7px;
+}
