@@ -1,0 +1,55 @@
+.leftsideBar{
+    width: 18%;
+}
+
+.postSection{
+    width: 56%;
+}
+
+.rightSideBar{
+    width: 26%;
+    padding-right: 50px;
+    z-index: 0;
+}
+
+@media screen and (max-width: 1200px){
+    .rightSideBar{
+        width: 35%;
+    }
+
+    .leftsideBar{
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 998px){
+    .rightSideBar{
+        padding-right: 20px;
+        width:45%;
+    }
+
+    .postSection{
+        width: 100%;
+    }
+
+    .leftsideBar{
+        width: 70px;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .rightSideBar{
+        display: none;
+    }
+
+    .leftsideBar{
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 600px){
+
+    .leftsideBar{
+        width: 70px;
+    }
+}

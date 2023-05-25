@@ -254,15 +254,15 @@ const Post = ({id, imageUrl, username, caption, likes, currentUsername, currentU
         <Box className='post'>
             <Stack>
                 {/* heading -> avatar and username */}
-                <Stack direction='row' alignItems='center' justifyContent='space-between' pb='10px' pt='5px' px='4px'>
+                <Stack className='postHeader' direction='row' alignItems='center' justifyContent='space-between'>
                         <Stack direction='row' alignItems='center' spacing={1.2}>
                             <Link to={`/user/${username}`} style={{color: '#111', textDecoration: 'none'}}>
                                 <Stack direction='row' alignItems='center' spacing={1.2}>
-                                    <Avatar 
+                                    <Avatar className='userAvatar'
                                         src={postUsernameProfileData?.profilePic}
                                         alt={postUsernameProfileData?.fullname}
                                         // if image src not working avatar uses initial letter of alt
-                                        sx={{width: '35px', height: '35px', backgroundColor: '#dcdcdc'}}/>
+                                        />
                                     <p className='postUsername'>{username}</p>
                                 </Stack>
                             </Link>
@@ -279,16 +279,16 @@ const Post = ({id, imageUrl, username, caption, likes, currentUsername, currentU
                         </Stack>
 
                     <Box className='optionMainBox' style={{position: 'relative'}}>
-                        <i class="bi bi-three-dots-vertical" style={{color: '#222', padding: '10px 0px'}}></i>
+                        <i class="bi bi-three-dots-vertical postThreeDotIcon"></i>
                         <Box className='optionBox'>
                             {currentUsername == username &&
-                                <Stack onClick={deletePost} borderBottom='1px solid #e6e6e6' py='11px' px='10px' direction='row' alignItems='center' justifyContent='space-between'>
+                                <Stack onClick={deletePost} py='11px' px='10px' direction='row' alignItems='center' justifyContent='space-between'>
                                     <p className='optionTextStyle'>Delete Post</p>
                                     <i class="bi bi-trash optionIconStyle" style={{color: '#dc3545'}}></i>
                                 </Stack>
                             }
                             {currentUserProfileData?.following?.some(acc => acc.followingUsername==username) &&
-                                <Stack onClick={unfollowAccount} borderBottom='1px solid #e6e6e6' py='11px' px='10px' direction='row' alignItems='center' justifyContent='space-between'>
+                                <Stack onClick={unfollowAccount} py='11px' px='10px' direction='row' alignItems='center' justifyContent='space-between'>
                                     <p className='optionTextStyle'>Unfollow</p>
                                     <i class="bi bi-person-x-fill optionIconStyle"></i>
                                 </Stack>

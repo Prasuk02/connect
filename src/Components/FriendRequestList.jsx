@@ -6,6 +6,7 @@ import { arrayUnion, arrayRemove } from 'firebase/firestore'
 import firebase from 'firebase/compat/app';
 import { Link } from 'react-router-dom'
 import { userDataContext } from '../App'
+import '../stylesheets/rightSideBar.css'
 
 const FriendRequestList = ({reqFullname, reqUsername, currentUserProfileData, reqProfilePic}) => {
     const {alertDisplay, setAlertDisplay} = useContext(userDataContext)
@@ -55,21 +56,21 @@ const FriendRequestList = ({reqFullname, reqUsername, currentUserProfileData, re
     }
 
     return (
-        <Stack mt='15px' pr='5px' direction='row' alignItems='center'>
+        <Stack className='friendReqAvatar' direction='row' alignItems='center'>
             <Link to={`/user/${reqUsername}`} style={{textDecoration:'none'}}>
                 <Avatar src={reqProfilePic} alt={reqFullname}/>
             </Link>
             <Stack width='100%' direction='row' alignItems='center' justifyContent='space-between'>
                 <Link to={`/user/${reqUsername}`} style={{textDecoration:'none'}}>
-                    <Stack ml='20px'>
-                        <p className='fontType' style={{fontSize: '14px', color: '#111', fontWeight: '600'}}>{reqUsername}</p>
-                        <p className='fontType' style={{fontSize: '14px', color: '#777'}}>{reqFullname}</p>
+                    <Stack className='detailsLeft'>
+                        <p className='friendReqUsername'>{reqUsername}</p>
+                        <p className='friendReqFullname'>{reqFullname}</p>
                     </Stack>
                 </Link>
 
                 <Stack direction='row' spacing={1} alignItems='center'>
-                    <i onClick={acceptReq} class="bi bi-check2" style={{backgroundColor: '#71ffbd55', color: '#198754', fontSize: '23px', padding: '0px 5px 4px', borderRadius: '5px'}}></i>
-                    <i onClick={deleteReq} class="bi bi-x" style={{backgroundColor: '#dc354535', color: '#dc3545', fontSize: '23px', padding: '0px 5px 4px', borderRadius: '5px'}}></i>
+                    <i onClick={acceptReq} class="bi bi-check2 acceptRejectBox" style={{backgroundColor: '#71ffbd55', color: '#198754'}}></i>
+                    <i onClick={deleteReq} class="bi bi-x acceptRejectBox" style={{backgroundColor: '#dc354535', color: '#dc3545'}}></i>
                 </Stack>
             </Stack>
         </Stack>

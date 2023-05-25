@@ -58,31 +58,28 @@ const SidebarBox = ({element, currentUsername, setNotificationModalDisplay}) => 
     }
   return (
     <>
-        <Box className='sidebox' style={{backgroundColor: currentSelect == element.name && '#f6f6f6', borderRadius: '10px'}}>
+        <Box className='sidebox' style={{backgroundColor: currentSelect == element.name && '#f6f6f6', borderRadius: '10px', paddingRight: '15px'}}>
             {element.name !== 'Profile' ? 
                 element.name != 'Notifications' ?
                     <Stack onClick={menuClick} direction='row' alignItems='center' spacing={2.3} pt='6px' pb='14px' pl='12px' borderRadius='10px'>
-                        {/* <p style={{color: '#262626', fontSize: '27px', paddingTop: '7px'}}>{element.icon}</p> */}
-                        <p className={element.icon} style={{color: '#262626', fontSize: '24px'}}></p>
-                        <p style={{color: '#262626', fontSize: '15px', paddingTop: '5px'}}>{element.name}</p>
+                        <p className={`${element.icon} sidebarElementIcon`}></p>
+                        <p className='sidebarElementName'>{element.name}</p>
                     </Stack>
                     :
                     <Stack onClick={menuClick} direction='row' alignItems='center' spacing={2.3} pt='6px' pb='14px' pl='12px' borderRadius='10px' position='relative'>
-                        {/* <p style={{color: '#262626', fontSize: '27px', paddingTop: '7px'}}>{element.icon}</p> */}
-                        <p className={element.icon} style={{color: '#262626', fontSize: '24px'}}></p>
-                        <p style={{color: '#262626', fontSize: '15px', paddingTop: '5px'}}>{element.name}</p>
+                        <p className={`${element.icon} sidebarElementIcon`}></p>
+                        <p className='sidebarElementName'>{element.name}</p>
                         <Badge color="error" badgeContent={totalNotifications}  style={{position: 'absolute', top: '9px', left: '21px'}}>
                         </Badge>
                     </Stack>
             : 
             <Link to={`/user/${currentUsername}`} style={{textDecoration: 'none'}}>
                 <Stack onClick={menuClick} direction='row' alignItems='center' spacing={2} pt='14px' pb='14px' pl='8px' borderRadius='10px'>
-                    {/* <p style={{color: '#262626', fontSize: '27px', paddingTop: '7px'}}>{element.icon}</p> */}
                     <Avatar style={{backgroundColor: '#E9E9E9', width: '31px', height: '31px'}}
                         src={currentUserProfileData?.profilePic}
                         alt={currentUserProfileData?.fullname}
                     />
-                    <p style={{color: '#262626', fontSize: '15px'}}>{currentUsername}</p>
+                    <p className='sidebarElementName' style={{paddingTop: '0px'}}>{currentUsername}</p>
                 </Stack>
             </Link>
             }

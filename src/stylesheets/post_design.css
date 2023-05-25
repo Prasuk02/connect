@@ -1,5 +1,17 @@
-.fontType{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.postHeader{
+    padding: 5px 4px 10px
+}
+
+.userAvatar{
+    width: 35px;
+    height: 35px;
+    background-color: #dcdcdc;
+}
+
+.postThreeDotIcon{
+    color: #222; 
+    padding: 10px 0px;
+    font-size: 16px;
 }
 
 .post{
@@ -176,4 +188,11 @@
     height: 6px;
     border-radius: 50%;
     background-color: #ddd;
+}
+
+@media screen and (max-width: 435px){
+    .post{
+        margin: 0px;
+        width: 100%;
+    }
 }

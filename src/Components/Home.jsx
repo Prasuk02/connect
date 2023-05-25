@@ -10,6 +10,7 @@ import RightSideBar from './RightSideBar'
 import NotificationModal from './NotificationModal'
 import Modal_Alert from './Modal_Alert'
 import EditForm from './EditForm'
+import '../stylesheets/mediaQueryHome.css'
 
 const Home = () => {
     const { signupCredentials, currentUser, setCurrentUser, editFormStatus, setEditFormStatus, alertDisplay, setAlertDisplay } = useContext(userDataContext)
@@ -110,8 +111,8 @@ const Home = () => {
     
     // console.log(posts)
     // console.log(currentUserProfileData)
-    // console.log("currentUser")
-    // console.log(currentUser)
+    console.log("currentUser")
+    console.log(currentUser)
     
     return (
         <>
@@ -122,17 +123,12 @@ const Home = () => {
             }
             <Stack direction='row'>
                 {/* sidebar */}
-                <Box width='18%'>
+                <Box className='leftsideBar'>
                     <SideBar currentUsername={currentUser?.displayName} setNotificationModalDisplay={setNotificationModalDisplay}/>
                 </Box>
 
                 {/* post section */}
-                <Box width='52%'>
-                    {/* adding new post section */}
-                    {/* <Box m='10px auto' width='80%' style={{backgroundColor: 'white', border: '1px solid #eee', borderRadius: '5px'}}>
-                        <AddNewPost username={currentUser?.displayName}/>
-                    </Box> */}
-
+                <Box className='postSection'>
                     {/* benifit of adding id is that:- before adding key react render the whole list as it is not sure which item is added or removed fom list, but if we add unique key that is id of the post, now react will know which element is pushed or pulled from the list and now react will only re-render the new posts and not the old ones*/}
                     {posts?.map((post) => {
                         // console.log(id)
@@ -153,7 +149,7 @@ const Home = () => {
                 </Box>
 
                 {/* suggestion section */}
-                <Box width='30%' pr='50px' style={{zIndex: '0'}}>
+                <Box className='rightSideBar'>
                     <RightSideBar
                         username={currentUser?.displayName}
                         currentUserProfileData={currentUserProfileData}

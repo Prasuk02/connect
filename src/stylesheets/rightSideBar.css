@@ -1,45 +1,123 @@
+.mainmain{
+    font-size: 62.5%;
+}
+
+.boxDivider{
+    margin-top: 1.2rem;
+    border-bottom: .1rem solid #eeeeee;
+    position: relative;
+    left: -2.0rem;
+    width: 120%;
+}
+
 .profileName{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #1f1f1f;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 2.0rem;
+}
+
+.rightSideMainBox{
+    margin-top: 1.5rem;
+    padding: 2.0rem;
+    background-color: white;
+    border-radius: .6rem;
+    overflow: hidden;
+}
+
+.rightSidebarUserDetails{
+    margin-top: 1.2rem;
+    padding: 0rem .5rem;
+}
+
+.rightUserDetailHeading{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #222;
+}
+
+.rightUserDetail{
+    font-size: 1.4rem;
+    color: #222;
 }
 
 .sidebarHeading{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #1f1f1f;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 1.5rem;
 }
 
 .profileFullname{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #777;
     font-weight: 400;
-    font-size: 12.5px;
-    margin-top: 2px;
-}
-
-.fontType{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.25rem;
+    margin-top: .2rem;
 }
 
 .requestBtn{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #0064ff;
     color: white;
     border: none;
-    padding: 9px 25px;
-    border-radius: 17px;
-    font-size: 15px;
+    padding: .9rem 2.5rem;
+    border-radius: 1.7rem;
+    font-size: 1.5rem;
     font-weight: 600;
 }
 
 .followBtn{
-    font-size: 13px;
+    font-size: 1.3rem;
     background-color: #e3eeff;
     color: #0064ff;
-    padding: 3px 7px;
-    border-radius: 5px;
+    padding: .3rem .7rem;
+    border-radius: .5rem;
     font-weight: 600;
+}
+
+
+/* FRIEND REQUEST & SUGGESTION BOX*/
+.friendReqAvatar{
+    margin-top: 1.5rem;
+    padding-right: .5rem;
+}
+
+.friendReqUsername{
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #111;
+}
+
+.friendReqFullname{
+    font-size: 1.4rem;
+    color: #777;
+}
+
+.acceptRejectBox{
+    font-size: 2.3rem; 
+    padding: 0rem .5rem .4rem; 
+    border-radius: .5rem;
+}
+
+.detailsLeft{
+    margin-left: 2.0rem;
+}
+
+.postfollowBtn{
+    font-size: 1.35rem;
+    background-color: #e3eeff;
+    color: #0064ff;
+    padding: .3rem .7rem;
+    border-radius: .5rem;
+    font-weight: 600;
+}
+
+.postreqBtn{
+    font-size: 1.35rem;
+    background-color: #ffb9c04d;
+    color: #dc3545;
+    padding: .3rem .7rem;
+    border-radius: .5rem;
+    font-weight: 600;
+}
+
+@media screen and (max-width: 998px){
+    
 }
