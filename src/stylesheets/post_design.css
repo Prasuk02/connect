@@ -190,9 +190,37 @@
     background-color: #ddd;
 }
 
+.addComment{
+    border-bottom: 1px solid #ccc; 
+    padding: 0px 8px 6px 0px
+}
+
 @media screen and (max-width: 435px){
     .post{
         margin: 0px;
         width: 100%;
+        padding: 8px 0px 8px;
+        border-radius: 0px;
+        border: 0px;
+    }
+
+    .addComment{
+        display: none;
+    }
+
+    .postHeader{
+        padding: 5px 12px 10px
+    }
+
+    .postlikeComment{
+        padding: 0px 12px;
+    }
+
+    .post-image{
+        background-color: #111;
+    }
+    
+    .captionText, .commentText, .likesCount{
+        padding-left: 12px;
     }
 }

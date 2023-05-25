@@ -341,7 +341,7 @@ const Post = ({id, imageUrl, username, caption, likes, currentUsername, currentU
                 </Box>
 
                 {/* like, comment, share button */}
-                <Stack direction='row' justifyContent='space-between' alignItems='center' mt='10px'>
+                <Stack className='postlikeComment' direction='row' justifyContent='space-between' alignItems='center' mt='10px'>
                     {/* like, share, comment */}
                     <Stack direction='row' alignItems='center' spacing={2}>
                         <p onClick={likeButton} className={isLike? 'icon-liked bi bi-heart-fill' : 'icons bi bi-heart'} id='likeBtn'></p>
@@ -367,7 +367,7 @@ const Post = ({id, imageUrl, username, caption, likes, currentUsername, currentU
                         <p className='captionText'><span className='username'>{element.username} </span>{element.comment}</p>
                     )
                 })}
-                <Stack direction='row' alignItems='center' spacing={2} borderBottom='1px solid #ccc' pr='8px' pb='6px'>
+                <Stack className='addComment' direction='row' alignItems='center' spacing={2} style={{display: 'none'}}>
                     <input onChange={handelComment} className='commentInput' type='text' placeholder='Add a comment' value={comment}/>
                     <i onClick={postComment} class="bi bi-arrow-up-circle-fill postBtn" style={{visibility: comment?.length==0 ? 'hidden': 'visible'}}></i>
                 </Stack>
