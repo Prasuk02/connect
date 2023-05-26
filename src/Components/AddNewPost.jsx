@@ -176,10 +176,10 @@ function AddNewPost({username}){
                         <p onClick={newPostToFirebase} style={{fontSize: '14px', color: '#007CCE', fontWeight: '500'}}>Share post</p>
                     </Stack>  
                     <Box style={{borderTop: '1px solid #ddd'}}></Box>
-                    <Stack direction='row' height='100%'>
+                    <Box className='addPostBox' height='100%'>
                         {preview.length != 0 ? 
-                            <Box width='57%' backgroundColor= '#f5f5f5'>
-                                <Stack height='280px' justifyContent='flex-end'>
+                            <Box className='postImgBox' backgroundColor= '#f5f5f5'>
+                                <Stack height='300px' justifyContent='space-evenly'>
                                     {preview[prevKey]?.type == 'image' ?
                                         <img id='enlargeImg' className='previewImage' src={preview[prevKey].url}/>
                                         :
@@ -189,10 +189,10 @@ function AddNewPost({username}){
                                 
                                 <Box width='88%' m='auto' mt='13px' style={{borderTop: '1px solid #ddd'}}></Box>
 
-                                <Stack width='100%' mt='13px' px='23px' direction='row' spacing={1.5} alignItems='center'>
+                                <Stack width='100%' mt='15px' px='23px' direction='row' alignItems='center' flexWrap='wrap'>
                                     {preview.map((prev, key) => {
                                         return(
-                                            <Stack height='85px' width='70px' border= '1px solid #aaaaaa' borderRadius='5px' justifyContent='center' position='relative'>
+                                            <Stack height='85px' width='70px' marginRight='15px' marginBottom='15px' border= '1px solid #aaaaaa' borderRadius='5px' justifyContent='center' position='relative'>
                                                 {prev.type == 'image' ? 
                                                     <img onClick={() => displayImg(key)} src={prev.url} class="previewImage" style={{minHeight: '60px'}}/>
                                                     :
@@ -203,7 +203,7 @@ function AddNewPost({username}){
                                         )
                                     })}
                                     {preview.length < 5 &&
-                                        <Box pt='6px' height='85px'>
+                                        <Box height='85px' marginBottom='15px' mt='13px'>
                                             <label htmlFor='newPost' class="bi bi-plus" style={{fontSize: '45px', color: '#aaa', border: '1px solid #aaaaaa', padding: '5px 10px 18px 10px', borderRadius: '5px'}}></label> 
                                             <input onChange={handleFile} accept="image/*, video/*" id='newPost' type='file' style={{display: 'none'}}/>
                                         </Box>
@@ -211,7 +211,7 @@ function AddNewPost({username}){
                                 </Stack>
                             </Box>
                             :
-                            <Box width='57%' backgroundColor= '#f5f5f5'>
+                            <Box className='postImgBox' backgroundColor= '#f5f5f5'>
                                 <Box width='max-content' m='auto'>
                                     <i class="bi bi-image" style={{fontSize: '190px', color: '#ddd'}}></i>
                                 </Box>
@@ -222,7 +222,7 @@ function AddNewPost({username}){
                                 </Stack>
                             </Box>
                         }
-                        <Box width='43%' pt='18px' borderLeft= '1px solid #eee'>
+                        <Box className='newPostCaptionBox' width='43%' pt='18px' borderLeft= '1px solid #eee'>
                             <Box pl='17px'>
                                 <Stack direction='row' alignItems='center' spacing={1.75}>
                                     <Avatar style={{backgroundColor: '#E9E9E9', width: '32px', height: '32px'}}
@@ -248,7 +248,7 @@ function AddNewPost({username}){
                                 </Box>
                             </Box>
                         </Box>
-                    </Stack>
+                    </Box>
                 </Box>
             </Backdrop>
         </>

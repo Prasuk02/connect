@@ -15,9 +15,9 @@
 }
 
 .moreBtn{
-    margin-top: 93px;
-    padding-left: 12px;
-    border-radius: 10px
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
 }
 
 .moreOptionText{

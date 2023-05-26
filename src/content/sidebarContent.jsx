@@ -30,3 +30,5 @@ export const sidebarContent = [
 ]
 
 export const postCategoriesContent = ['Development', 'Fashion', 'Photography', 'Music', 'Art', 'Fitness and Wellness', 'Travel', 'Food', 'Sports', 'Wildlife', 'Information', 'Entertainment']
+
+export const emojis = ['&#129315;', '128517', '&#129395', '&#128520', '&#128077', '&#128079', '&#128293']

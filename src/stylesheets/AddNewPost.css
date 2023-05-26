@@ -1,6 +1,11 @@
+.addPostBox{
+    display: flex;
+    flex-direction: row;
+}
+
 .createPostMainBox{
-    width: 58%;
-    height: 70vh;
+    width: 60%;
+    height: 80vh;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -73,6 +78,10 @@ progress[value]::-webkit-progress-value{
     object-fit: contain;            /* work with height */
 }
 
+.postImgBox{
+    width: 57%;
+}
+
 .selectImage{
     background-color: #da3f60;
     color: white;
@@ -86,4 +95,40 @@ progress[value]::-webkit-progress-value{
 
 .categoryList{
     cursor: pointer;
+}
+
+@media screen and (max-width: 1024px){
+    .createPostMainBox{
+        width: 70%;
+        height: 75vh;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .createPostMainBox{
+        width: 90%;
+        height: max-content;
+    }
+}
+
+@media screen and (max-width: 620px){
+    .createPostMainBox{
+        width: 100%;
+        height: 75vh;
+    }
+}
+
+@media screen and (max-width: 440px){
+    .createPostMainBox{
+        width: 85%;
+        height: 85vh;
+    }
+
+    .postImgBox{
+        width: 100%;
+    }
+
+    .newPostCaptionBox{
+        display: none;
+    }
 }

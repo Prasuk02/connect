@@ -10,7 +10,7 @@ import PostLiked from './Components/PostLiked';
 import Chats from './Components/Chats';
 import Explore from './Components/Explore';
 
-export const userDataContext = createContext()
+export const userDataContext = createContext("")
 
 function App() {
   const [signupCredentials, setSignupCredentials] = useState({})

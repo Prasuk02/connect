@@ -1,5 +1,7 @@
-.fontType{
+.alertText{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14.2px;
+    letter-spacing: 0.4px;
 }
 
 .bigImg{
@@ -12,11 +14,8 @@
     transform: translate(0%, -50%);
 }
 
-.username{
-    font-weight: 500;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color:#111;
-    font-size: 14.1px;
+.commentSpacing{
+    margin-left: 16px;
 }
 
 .captionText{
@@ -31,31 +30,9 @@
     margin-top: 10px;
 }
 
-.pic_username{
-    font-weight: 600;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 16px;
-}
-
-.likesCount1{
-    font-weight: 600;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 14px;
-    margin-top: 8px;
-    padding: 0px 20px;
-}
-
-.postTime{
-    margin-top: 3px;
-    padding: 0px 20px;
-    font-size: 12px;
-    color: #777;
-}
-
-.singlePostCommentBox{
-    height: 100%;
-    border-bottom: 1px solid #ccc;
-    overflow-y: auto;
+.emojiBox{
+    display: flex;
+    flex-direction: row;
 }
 
 .inputCommentBox{
@@ -85,13 +62,25 @@
     color: #4a4a4a;
 }
 
-.save-icon{
-    font-size: 21px;
-    color: #111;
+.likesCount1{
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    margin-top: 8px;
+    padding: 0px 20px;
 }
 
-.save-icon:hover{
-    color: #444;
+.pic_username{
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+}
+
+.postTime{
+    margin-top: 3px;
+    padding: 0px 20px;
+    font-size: 12px;
+    color: #777;
 }
 
 .postBtn2{
@@ -104,10 +93,24 @@
     border-radius: 5px;
 }
 
-.alertText{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 14.2px;
-    letter-spacing: 0.4px;
+.rightSideSinglePostBox{
+    width: 50%;
+    height: 100%;
+}
+
+.singlePostCommentBox{
+    height: calc(100% - 45px - 66px - 97px);
+    overflow-y: auto;
+    padding-bottom: 6px;
+}
+
+.save-icon{
+    font-size: 21px;
+    color: #111;
+}
+
+.save-icon:hover{
+    color: #444;
 }
 
 .singlePostImg{
@@ -116,21 +119,40 @@
     position: relative;
 }
 
-.rightSideSinglePostBox{
-    width: 50%;
-    height: 100%;
-}
-
 .singlePostMainBox{
     margin: auto;
-    width: 75%;
-    height: 92%;
+    width: 70%;
+    height: 85%;
     background-color: white;
     border-radius: 6px;
 }
 
-.singlePostLikeBtn{
-    display: inline-block;
+.username{
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:#111;
+    font-size: 14.1px;
+}
+
+@media screen and (max-width: 1440px) {
+
+}
+
+@media screen and (max-width: 1024px) {
+    .singlePostMainBox{
+        margin: auto;
+        width: 90%;
+        height: 82%;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .singlePostMainBox{
+        margin: auto;
+        width: 95%;
+        height: 75%;
+    }
 }
 
 @media screen and (max-width: 600px){
@@ -152,5 +174,13 @@
 
     .singlePostLikeBtn{
         display: none;
+    }
+
+    .singlePostCommentBox{
+        height: calc(100% - 45px - 66px);
+    }
+
+    .commentSpacing{
+        margin-left: 0px;
     }
 }

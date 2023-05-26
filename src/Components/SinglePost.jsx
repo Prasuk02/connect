@@ -4,6 +4,7 @@ import {db} from '../firebase'
 import { serverTimestamp } from 'firebase/firestore'
 import '../stylesheets/singlePost.css'
 import ReactPlayer from 'react-player'
+import { emojis } from '../content/sidebarContent'
 
 const SinglePost = ({id, imageUrl, username, caption, likes, currentUsername, setDisplay, isLike, setIsLike, comment, setComment, commentList, setCommentList}) => {
     const [like, setlike] = useState(likes)
@@ -117,48 +118,55 @@ const SinglePost = ({id, imageUrl, username, caption, likes, currentUsername, se
                     {/* all comments */}
                     <Box className='singlePostCommentBox'>
                         {/* caption */}
-                        <Stack direction='row' spacing={1} alignItems='flex-start' p='6px 20px'>
+                        <Stack direction='row' alignItems='flex-start' p='6px 26px'>
                             <Avatar src='#' style={{width: '27px', height: '27px'}}/>
-                            <p className='captionText'><span className='username'>{username} </span>{caption}</p>
+                            <p className='captionText commentSpacing'><span className='username'>{username} </span>{caption}</p>
                         </Stack>
 
                         {/* comments */}
                         {commentList?.map((element) => {
                         return(
-                            <Stack direction='row' spacing={1} alignItems='flex-start' p='6px 20px'>
+                            <Stack direction='row' alignItems='flex-start' p='6px 26px'>
                                 <Avatar src='#' style={{width: '27px', height: '27px'}}/>
-                                <p className='captionText'><span className='username'>{element.username} </span>{element.comment}</p>
+                                <p className='captionText commentSpacing'><span className='username'>{element.username} </span>{element.comment}</p>
                             </Stack>
                         )
                         })}
                     </Box>
 
                     {/* like, comment, share button */}
-                    <div className='singlePostLikeBtn'>
                         <Stack direction='row' justifyContent='space-between' alignItems='center' mt='10px' px='20px'>
                             {/* like, share, comment */}
                             <Stack direction='row' alignItems='center' spacing={2}>
-                                <p onClick={likeButton} className={isLike? 'icon-liked bi bi-heart-fill' : 'icons bi bi-heart'} id='likeBtn'></p>
-                                <p className='icons bi bi-chat-right-text'></p>
+                                <p onClick={likeButton} className={isLike? 'icon-liked bi bi-heart-fill singlePostLikeBtn' : 'icons bi bi-heart singlePostLikeBtn'} id='likeBtn'></p>
+                                <p className='icons bi bi-chat-right-text singlePostLikeBtn'></p>
                                 {/* <p className='icons bi bi-send'></p> */}
                             </Stack>
                             {/* save */}
                             <Stack direction='row' alignItems='center'>
-                                <p className='save-icon bi bi-bookmark'></p>
+                                <p className='save-icon bi bi-bookmark singlePostLikeBtn'></p>
                             </Stack> 
                         </Stack>
 
                         {/* likes count  */}
-                        <p className='likesCount1'>{likes} likes</p>
+                        <p className='likesCount1 singlePostLikeBtn'>{likes} likes</p>
                         
                         {/* post time */}
-                        <p className='fontType postTime'>31 minutes ago</p>
-                    </div>
+                        <p className='fontType postTime singlePostLikeBtn'>31 minutes ago</p>
 
                     {/* <Box mt='15px' borderBottom='1px solid #ddd'></Box> */}
                     
                     {/* input box */}
-                    <Stack width='100%' direction='row' alignItems='center' spacing={0} pr='20px' style={{position: 'absolute', bottom: '0px'}}>
+
+                    {/* <div className='emojiBox'>
+                        {emojis.map(element => {
+                            return(
+                                <p>{element}</p>
+                            )
+                        })}
+                    </div> */}
+
+                    <Stack width='100%' direction='row' alignItems='center' spacing={0} pr='20px' style={{position: 'absolute', bottom: '0px', borderTop: '1px solid #ccc'}}>
                         <input onChange={handelComment} className='inputCommentBox' type='text' placeholder='Add a comment' value={comment}/>
                         <i onClick={postComment} class="postBtn2" style={{visibility: comment?.length==0 ? 'hidden': 'visible'}}>Post</i>
                     </Stack>
