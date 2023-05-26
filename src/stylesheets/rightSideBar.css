@@ -19,7 +19,7 @@
 .rightSideMainBox{
     margin-top: 1.5rem;
     padding: 2.0rem;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border-radius: .6rem;
     overflow: hidden;
 }

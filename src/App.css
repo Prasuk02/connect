@@ -6,6 +6,12 @@
 
 body{
   overflow-x: hidden;
-  background-color: white;
+  background-color: #f5f9f5;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@media screen and (max-width: 1024px){
+  body{
+    background-color: white;
+  }
 }

@@ -34,6 +34,7 @@
 .pic_username{
     font-weight: 600;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
 }
 
 .likesCount1{
@@ -51,9 +52,15 @@
     color: #777;
 }
 
+.singlePostCommentBox{
+    height: 100%;
+    border-bottom: 1px solid #ccc;
+    overflow-y: auto;
+}
+
 .inputCommentBox{
     width: 100%;
-    height: 43px;
+    height: 45px;
     border: none;
     padding: 0px 20px;
     font-size: 14px;
@@ -101,4 +108,49 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 14.2px;
     letter-spacing: 0.4px;
+}
+
+.singlePostImg{
+    width: 55%;
+    height: 100%;
+    position: relative;
+}
+
+.rightSideSinglePostBox{
+    width: 50%;
+    height: 100%;
+}
+
+.singlePostMainBox{
+    margin: auto;
+    width: 75%;
+    height: 92%;
+    background-color: white;
+    border-radius: 6px;
+}
+
+.singlePostLikeBtn{
+    display: inline-block;
+}
+
+@media screen and (max-width: 600px){
+    .singlePostImg{
+        width: 0%;
+    }
+
+    .rightSideSinglePostBox{
+        width: 100%;
+    }
+
+    .singlePostMainBox{
+        margin: auto;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        border-radius: 0px;
+    }
+
+    .singlePostLikeBtn{
+        display: none;
+    }
 }

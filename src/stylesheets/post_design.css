@@ -8,6 +8,12 @@
     background-color: #dcdcdc;
 }
 
+.userAvatarComment{
+    width: 20px;
+    height: 20px;
+    background-color: #dcdcdc;
+}
+
 .postThreeDotIcon{
     color: #222; 
     padding: 10px 0px;
@@ -15,7 +21,7 @@
 }
 
 .post{
-    margin: 30px auto;
+    margin: 3px auto;
     width: 80%;
     border: 0px solid #eee;
     background-color: white;
@@ -84,8 +90,8 @@
 .commentText{
     font-size: 13.5px;
     color: #777;
-    margin-top: 7px;
-    margin-bottom: 3px;
+    margin-top:3px;
+    margin-bottom: 2px;
 }
 
 .commentInput{
@@ -192,8 +198,8 @@
 }
 
 .addComment{
-    border-bottom: 1px solid #ccc; 
-    padding: 0px 8px 6px 0px
+    padding: 0px 12px 20px;
+    border-bottom: 1px solid #ddd;
 }
 
 /* MEDIA QUERIES */
@@ -229,6 +235,11 @@
 
     .captionText, .commentText, .likesCount{
         padding-left: 12px;
+    }
+
+    .addComment{
+        border-bottom: none;
+        padding: 0px 12px 0px;
     }
 }
 

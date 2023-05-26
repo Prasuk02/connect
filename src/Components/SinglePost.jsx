@@ -74,10 +74,10 @@ const SinglePost = ({id, imageUrl, username, caption, likes, currentUsername, se
     return (
     <>
         {/* sx used instead of style tag when variable is to be passed */}
-        <Box m='auto' width='75%' height='92%' backgroundColor='white' sx={{position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', overflow: 'hidden', borderRadius: '6px'}}>
+        <Box className='singlePostMainBox' sx={{position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', overflow: 'hidden'}}>
             <Stack direction='row' height='100%'>
                 {/* photo */}
-                <Stack width='55%' height='100%' justifyContent='center' backgroundColor='#eee' style={{position: 'relative'}}>
+                <Stack className='singlePostImg' justifyContent='center' backgroundColor='#eee'>
                     {imageUrl[imageIndex].type.includes('image') ?
                         <img onDoubleClick={likeButton} className='post-image' src={imageUrl[imageIndex].url} alt="Post"/>
                         :
@@ -101,7 +101,7 @@ const SinglePost = ({id, imageUrl, username, caption, likes, currentUsername, se
                 </Stack>
 
                 {/* likes, aption and comment section */}
-                <Box width='50%' height='100%'>
+                <Box className='rightSideSinglePostBox'>
                     <Stack direction='row' alignItems='flex-start' justifyContent='space-between'>
                         <Stack direction='row' alignItems='center' spacing={1.5} p='12px 20px'>
                             <Avatar src='#'/>
@@ -112,12 +112,12 @@ const SinglePost = ({id, imageUrl, username, caption, likes, currentUsername, se
                         </Stack>
                     </Stack>
                     
-                    <Box mb='10px' borderBottom='1px solid #ddd'></Box>
+                    <Box borderBottom='1px solid #ddd'></Box>
 
                     {/* all comments */}
-                    <Box style={{height: '374px', borderBottom: '1px solid #ccc', overflowY: 'auto'}}>
+                    <Box className='singlePostCommentBox'>
                         {/* caption */}
-                        <Stack direction='row' spacing={1.65} alignItems='flex-start' p='6px 20px'>
+                        <Stack direction='row' spacing={1} alignItems='flex-start' p='6px 20px'>
                             <Avatar src='#' style={{width: '27px', height: '27px'}}/>
                             <p className='captionText'><span className='username'>{username} </span>{caption}</p>
                         </Stack>
@@ -125,7 +125,7 @@ const SinglePost = ({id, imageUrl, username, caption, likes, currentUsername, se
                         {/* comments */}
                         {commentList?.map((element) => {
                         return(
-                            <Stack direction='row' spacing={1.65} alignItems='flex-start' p='6px 20px'>
+                            <Stack direction='row' spacing={1} alignItems='flex-start' p='6px 20px'>
                                 <Avatar src='#' style={{width: '27px', height: '27px'}}/>
                                 <p className='captionText'><span className='username'>{element.username} </span>{element.comment}</p>
                             </Stack>
@@ -134,29 +134,31 @@ const SinglePost = ({id, imageUrl, username, caption, likes, currentUsername, se
                     </Box>
 
                     {/* like, comment, share button */}
-                    <Stack direction='row' justifyContent='space-between' alignItems='center' mt='10px' px='20px'>
-                        {/* like, share, comment */}
-                        <Stack direction='row' alignItems='center' spacing={2}>
-                            <p onClick={likeButton} className={isLike? 'icon-liked bi bi-heart-fill' : 'icons bi bi-heart'} id='likeBtn'></p>
-                            <p className='icons bi bi-chat-right-text'></p>
-                            {/* <p className='icons bi bi-send'></p> */}
+                    <div className='singlePostLikeBtn'>
+                        <Stack direction='row' justifyContent='space-between' alignItems='center' mt='10px' px='20px'>
+                            {/* like, share, comment */}
+                            <Stack direction='row' alignItems='center' spacing={2}>
+                                <p onClick={likeButton} className={isLike? 'icon-liked bi bi-heart-fill' : 'icons bi bi-heart'} id='likeBtn'></p>
+                                <p className='icons bi bi-chat-right-text'></p>
+                                {/* <p className='icons bi bi-send'></p> */}
+                            </Stack>
+                            {/* save */}
+                            <Stack direction='row' alignItems='center'>
+                                <p className='save-icon bi bi-bookmark'></p>
+                            </Stack> 
                         </Stack>
-                        {/* save */}
-                        <Stack direction='row' alignItems='center'>
-                            <p className='save-icon bi bi-bookmark'></p>
-                        </Stack> 
-                    </Stack>
 
-                    {/* likes count  */}
-                    <p className='likesCount1'>{likes} likes</p>
-                    
-                    {/* post time */}
-                    <p className='fontType postTime'>31 minutes ago</p>
+                        {/* likes count  */}
+                        <p className='likesCount1'>{likes} likes</p>
+                        
+                        {/* post time */}
+                        <p className='fontType postTime'>31 minutes ago</p>
+                    </div>
 
-                    <Box mt='15px' borderBottom='1px solid #ddd'></Box>
+                    {/* <Box mt='15px' borderBottom='1px solid #ddd'></Box> */}
                     
                     {/* input box */}
-                    <Stack direction='row' alignItems='center' spacing={0} pr='20px'>
+                    <Stack width='100%' direction='row' alignItems='center' spacing={0} pr='20px' style={{position: 'absolute', bottom: '0px'}}>
                         <input onChange={handelComment} className='inputCommentBox' type='text' placeholder='Add a comment' value={comment}/>
                         <i onClick={postComment} class="postBtn2" style={{visibility: comment?.length==0 ? 'hidden': 'visible'}}>Post</i>
                     </Stack>

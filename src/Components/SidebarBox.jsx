@@ -58,7 +58,7 @@ const SidebarBox = ({element, currentUsername, setNotificationModalDisplay}) => 
     }
   return (
     <>
-        <Box className='sidebox' style={{backgroundColor: currentSelect == element.name && '#f6f6f6', borderRadius: '10px'}}>
+        <Box className='sidebox' style={{backgroundColor: currentSelect == element.name && '#f6f6f6', borderRadius: '10px', paddingRight: '10px'}}>
             {element.name !== 'Profile' ? 
                 element.name != 'Notifications' ?
                     <Stack onClick={menuClick} direction='row' alignItems='center' spacing={2.3} pt='6px' pb='14px' pl='12px' borderRadius='10px'>
