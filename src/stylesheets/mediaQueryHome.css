@@ -55,8 +55,10 @@
 }
 
 @media screen and (max-width: 440px){
-
     .leftsideBar{
-        display: none;
+        position: fixed;
+        bottom: 0px;
+        z-index: 10;
+        width: 100%;
     }
 }

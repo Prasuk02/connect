@@ -14,6 +14,12 @@
     padding: 11px 28px;
 }
 
+.moreBtn{
+    margin-top: 93px;
+    padding-left: 12px;
+    border-radius: 10px
+}
+
 .moreOptionText{
     color: #262626; 
     font-size: 15.5px;
@@ -34,6 +40,11 @@
 .sidebox:hover{
     background-color: #f3f3f3;
     border-radius: 10px;
+    padding-right: 10px;
+}
+
+.menuIcon{
+    padding-top: 7px;
 }
 
 .sideBarMainBox{
@@ -44,7 +55,11 @@
     padding: 20px; 
     background-color: white;
     position: sticky; 
-    top: 60px
+    top: 60px;
+}
+
+.profileStack{
+    padding-top: 14px;
 }
 
 .sidebarElementIcon{
@@ -76,4 +91,45 @@
     .sideBarMainBox{
         padding: 10px; 
     }
+}
+
+@media screen and (max-width: 440px){
+    .sidebarElementName{
+        display: none;
+    }
+
+    .sideBarMainBox{
+        padding: 10px; 
+        padding-right: 50px;
+        display: flex;
+        flex-direction: row;
+        gap: 0px;
+        height: 70px; 
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .moreBtn{
+        margin-top: 0px;
+        padding-left:0px;
+        border-radius: 0px
+    }
+
+    .sidebox{
+        padding-right: 10px;
+    }
+
+    .sidebox:hover{
+        padding-right: 10px;
+    }
+
+    .profileStack{
+        padding-top: 10px;
+    }
+
+    .menuIcon{
+        padding-top: 4px;
+        padding-left: 2px;
+    }
+
 }

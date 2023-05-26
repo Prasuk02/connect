@@ -58,7 +58,7 @@ const SidebarBox = ({element, currentUsername, setNotificationModalDisplay}) => 
     }
   return (
     <>
-        <Box className='sidebox' style={{backgroundColor: currentSelect == element.name && '#f6f6f6', borderRadius: '10px', paddingRight: '15px'}}>
+        <Box className='sidebox' style={{backgroundColor: currentSelect == element.name && '#f6f6f6', borderRadius: '10px'}}>
             {element.name !== 'Profile' ? 
                 element.name != 'Notifications' ?
                     <Stack onClick={menuClick} direction='row' alignItems='center' spacing={2.3} pt='6px' pb='14px' pl='12px' borderRadius='10px'>
@@ -74,7 +74,7 @@ const SidebarBox = ({element, currentUsername, setNotificationModalDisplay}) => 
                     </Stack>
             : 
             <Link to={`/user/${currentUsername}`} style={{textDecoration: 'none'}}>
-                <Stack onClick={menuClick} direction='row' alignItems='center' spacing={2} pt='14px' pb='14px' pl='8px' borderRadius='10px'>
+                <Stack className='profileStack' onClick={menuClick} direction='row' alignItems='center' spacing={2} pb='14px' pl='8px' borderRadius='10px'>
                     <Avatar style={{backgroundColor: '#E9E9E9', width: '31px', height: '31px'}}
                         src={currentUserProfileData?.profilePic}
                         alt={currentUserProfileData?.fullname}

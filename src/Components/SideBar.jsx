@@ -26,9 +26,9 @@ const SideBar = ({currentUsername, setNotificationModalDisplay}) => {
                 )
             })}
 
-            <Stack className='moreBtn' position='relative' direction='row' alignItems='center' spacing={2.3} mt='93px' pl='12px' borderRadius='10px'>
-                <p><AiOutlineMenu style={{color: '#262626', fontSize: '27px', paddingTop: '7px'}}/></p>
-                <p className='moreOptionText'>More</p>
+            <Stack className='moreBtn' position='relative' direction='row' alignItems='center' spacing={2.3}>
+                <p className='menuIcon'><AiOutlineMenu style={{color: '#262626', fontSize: '27px'}}/></p>
+                <p className='moreOptionText sidebarElementName'>More</p>
                 <Box className='moreOptions'>
                     <Link to='/posts/saved' style={{textDecoration: 'none'}}>
                         <Stack className='moreOptionsItem' direction='row' alignItems='center' justifyContent='space-between'>

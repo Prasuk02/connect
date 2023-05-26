@@ -17,7 +17,7 @@
 .post{
     margin: 30px auto;
     width: 80%;
-    border: 1px solid #eee;
+    border: 0px solid #eee;
     background-color: white;
     border-radius: 5px;
     padding: 10px 15px;
@@ -33,6 +33,7 @@
     max-height: 400px;
     object-fit: contain;
     border-radius: 5px;
+    background-color: #111;
 }
 
 .icons{
@@ -195,17 +196,22 @@
     padding: 0px 8px 6px 0px
 }
 
-@media screen and (max-width: 435px){
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 768px){
+    .post{
+        margin: 10px auto;
+        width: 90%
+    }
+}
+
+@media screen and (max-width: 600px){
     .post{
         margin: 0px;
         width: 100%;
         padding: 8px 0px 8px;
         border-radius: 0px;
         border: 0px;
-    }
-
-    .addComment{
-        display: none;
     }
 
     .postHeader{
@@ -218,9 +224,16 @@
 
     .post-image{
         background-color: #111;
+        border-radius: 4px;
     }
-    
+
     .captionText, .commentText, .likesCount{
         padding-left: 12px;
+    }
+}
+
+@media screen and (max-width: 435px){
+    .post-image{
+        border-radius: 0px;
     }
 }
