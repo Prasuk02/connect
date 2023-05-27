@@ -1,3 +1,12 @@
+.mainHomeBox{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
 .leftsideBar{
     width: 18%;
 }
@@ -56,9 +65,16 @@
 
 @media screen and (max-width: 440px){
     .leftsideBar{
-        position: fixed;
-        bottom: 0px;
-        z-index: 10;
         width: 100%;
+        position: sticky;
+        bottom: 0px;
+        z-index: 1;
+    }
+
+    .mainHomeBox{
+        display: flex;
+        flex-direction: column-reverse;
+        width: 100%;
+        height: 100%;
     }
 }

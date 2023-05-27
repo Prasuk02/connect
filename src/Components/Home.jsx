@@ -118,10 +118,11 @@ const Home = () => {
         <>
             <Modal_Alert alertDisplay={alertDisplay} setAlertDisplay={setAlertDisplay}/>
             <Navbar/>
-            {createPostDisplay.open == 'true' &&
+            {createPostDisplay?.open == 'true' &&
                 <AddNewPost username={currentUser?.displayName}/>
             }
-            <Stack direction='row'>
+            {/* <Stack className='mainHomeBox' direction='row'> */}
+            <div className='mainHomeBox'>
                 {/* sidebar */}
                 <Box className='leftsideBar'>
                     <SideBar currentUsername={currentUser?.displayName} setNotificationModalDisplay={setNotificationModalDisplay}/>
@@ -153,9 +154,10 @@ const Home = () => {
                     <RightSideBar
                         username={currentUser?.displayName}
                         currentUserProfileData={currentUserProfileData}
-                    />
+                        />
                 </Box>
-            </Stack>
+            </div>
+            {/* </Stack> */}
 
             
             {notificationModalDisplay?.open == true &&

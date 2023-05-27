@@ -15,9 +15,10 @@
 }
 
 .moreBtn{
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin-left: 10px;
 }
 
 .moreOptionText{
@@ -56,6 +57,14 @@
     background-color: white;
     position: sticky; 
     top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebarAside{
+    display: flex;
+    flex-direction: column;
 }
 
 .profileStack{
@@ -100,17 +109,27 @@
 
     .sideBarMainBox{
         padding: 10px; 
-        padding-right: 50px;
-        display: flex;
-        flex-direction: row;
-        gap: 0px;
+        padding: 0px 15px 0px 10px;
         height: 70px; 
         width: 100%;
         overflow: hidden;
+        border-top: 1px solid #eee;
+        flex-direction: row;
+        align-items: center;
+        /* justify-content: space-between; */
+    }
+
+    .sidebarAside{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        flex-wrap: nowrap;
     }
 
     .moreBtn{
-        margin-top: 0px;
+        margin-top: -5px;
         padding-left:0px;
         border-radius: 0px
     }
@@ -130,6 +149,14 @@
     .menuIcon{
         padding-top: 4px;
         padding-left: 2px;
+    }
+
+    .sidebox:nth-child(5){
+        display: none;
+    }
+
+    .sidebox:nth-child(6){
+        display: none;
     }
 
 }

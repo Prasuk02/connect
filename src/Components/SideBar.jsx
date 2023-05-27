@@ -20,13 +20,15 @@ const SideBar = ({currentUsername, setNotificationModalDisplay}) => {
   return (
     <>
         <Box className='sideBarMainBox'>
-            {sidebarContent?.map((element) => {
-                return(
-                    <SidebarBox element={element} currentUsername={currentUsername} setNotificationModalDisplay={setNotificationModalDisplay}/>
-                )
-            })}
+            <aside className='sidebarAside'>
+                {sidebarContent?.map((element) => {
+                    return(
+                        <SidebarBox element={element} currentUsername={currentUsername} setNotificationModalDisplay={setNotificationModalDisplay}/>
+                    )
+                })}
+            </aside>
 
-            <Stack className='moreBtn' direction='row' alignItems='center' spacing={2.3}>
+            <aside className='moreBtn'>
                 <p className='menuIcon'><AiOutlineMenu style={{color: '#262626', fontSize: '27px'}}/></p>
                 <p className='moreOptionText sidebarElementName'>More</p>
                 <Box className='moreOptions'>
@@ -47,7 +49,7 @@ const SideBar = ({currentUsername, setNotificationModalDisplay}) => {
                         <i class="bi bi-box-arrow-left moreOptionIcon" style={{color: '#222'}}></i>
                     </Stack>
                 </Box>
-            </Stack>
+            </aside>
         </Box>
     </>
   )
