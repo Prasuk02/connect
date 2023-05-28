@@ -61,6 +61,12 @@
     .leftsideBar{
         width: 70px;
     }
+
+    .userProfileMainBox{
+        width: 100%;
+        margin: auto;
+        padding: 0px;
+    }
 }
 
 @media screen and (max-width: 440px){

@@ -6,7 +6,7 @@ import { userDataContext } from '../App'
 import loaderIcon from '../Images/loaderIcon.gif'
 
 const EditForm = ({setEditFormStatus, userProfileData, alertDisplay, setAlertDisplay}) => {
-  const {loader, setLoader} = useContext(userDataContext)
+  // const {loader, setLoader} = useContext(userDataContext)
   const {fullname, biodata, biolink} = userProfileData
   // console.log(fullname)
   const [editDetails, setEditDetails] = useState({
@@ -36,7 +36,7 @@ const EditForm = ({setEditFormStatus, userProfileData, alertDisplay, setAlertDis
   }
 
   const updateProfileDb = () => {
-    setLoader(true)
+    // setLoader(true)
     let bio = editDetails?.biodata?.split('\n')
 
     {profileImgUrl?
@@ -87,7 +87,7 @@ const EditForm = ({setEditFormStatus, userProfileData, alertDisplay, setAlertDis
         open: true
       }))
     }
-    setLoader(false)
+    // setLoader(false)
   }
   console.log(editDetails)
   console.log(profileImgUrl)
@@ -171,11 +171,11 @@ const EditForm = ({setEditFormStatus, userProfileData, alertDisplay, setAlertDis
         </Stack>
 
 
-        {loader && 
+        {/* {loader && 
           <Backdrop open='true' sx={{zIndex: (theme) => theme.zIndex.drawer + 1 }}>
             <img src={loaderIcon} width='120px'/>
           </Backdrop>
-        }
+        } */}
     </Box>
   )
 }

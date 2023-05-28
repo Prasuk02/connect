@@ -12,6 +12,7 @@ import '../stylesheets/login.css'
 const Login = () => {
     const [loginCredentials, setLoginCredentials] = useState({})
     const [error, setError] = useState('')
+    const [showPassword, setShowPassword] = useState(true)
     const navigate = useNavigate()
 
     const handleInput = (event) => {
@@ -92,7 +93,37 @@ const Login = () => {
 
                             {/* input boxes */}
                             <input onChange={handleInput} onKeyUp={handleLogin} className='inputBox' name='loginId' type='text' placeholder='Email address' required/>
-                            <input onChange={handleInput} onKeyUp={handleLogin} className='inputBox' name='password' type='password' placeholder='Password' required/>
+                            {/* <input onChange={handleInput} onKeyUp={handleLogin} className='inputBox' name='password' type='password' placeholder='Password' required/> */}
+                            <Stack className='inputPasswordBox' direction='row' spacing={1.5} justifyContent='space-between'alignItems='center'>
+                                <input onKeyUp={handleLogin} onChange={handleInput} name='password' className='inputBoxPassword' type='password' placeholder='Password' required/>
+                                {showPassword ?
+                                    <span onClick={() => {
+                                        setShowPassword(!showPassword)
+                                        document.getElementsByClassName('inputBoxPassword')[0].type='text'
+                                    }
+                                    } style={{fontSize: '14px'}}>🙈</span>
+                                    :
+                                    <span onClick={() => {
+                                        setShowPassword(!showPassword)
+                                        document.getElementsByClassName('inputBoxPassword')[0].type='password'
+                                    }
+                                    } style={{fontSize: '14px'}}>🐵</span>
+                                }
+                                {/* {showPassword ?
+                                    <VscEye onClick={() => {
+                                        setShowPassword(!showPassword)
+                                        document.getElementsByClassName('inputBoxPassword')[0].type='text'
+                                    }
+                                    }/>
+                                    :
+                                    <VscEyeClosed onClick={() => {
+                                        setShowPassword(!showPassword)
+                                        document.getElementsByClassName('inputBoxPassword')[0].type='password'
+                                    }
+                                    }/>
+                                } */}
+                            </Stack>
+
 
                             {/* login with credential button */}
                             <button onClick={checkLoginDetails} type='submit' className='loginButton'>LOGIN</button>

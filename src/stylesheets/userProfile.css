@@ -29,8 +29,8 @@
 }
 
 .imgBox{
-    width: 32.90%;
-    height: 315px;
+    width: calc((100vw - 18vw - 164px) / 3.1);
+    height: calc((100vw - 18vw - 164px) / 3.1);
     margin-top: 4px;
     margin-right: 4px;
     position: relative;
@@ -125,4 +125,82 @@
     padding: 3px 7px;
     border-radius: 5px;
     font-weight: 600;
+}
+
+.userProfileMainBox{
+    width: 100%;
+    padding: 0;
+    height: calc(100vh - 60px);
+    overflow: hidden auto;
+}
+
+.userAvatarProfilePic{
+    width: 100px;
+    height: 100px;
+}
+
+.userProfilePhotoSection{
+    width: 82%;
+    margin: auto;
+}
+
+@media screen and (max-width: 1400px){
+    .imgBox{
+        width: calc((100vw - 18vw - 15vw) / 3);
+        height: calc((100vw - 18vw - 15vw) / 3);
+    }
+}
+
+@media screen and (max-width: 1200px){
+    .imgBox{
+        width: calc((100vw - 20vw - 15vw) / 3);
+        height: calc((100vw - 20vw - 15vw) / 3);
+    }
+}
+
+@media screen and (max-width: 998px){
+    .imgBox{
+        width: calc((100vw - 70px - 20vw) / 3);
+        height: calc((100vw - 70px - 20vw) / 3);
+    }
+}
+
+@media screen and (max-width: 768px){
+    .imgBox{
+        width: calc((100vw - 30vw - 5vw) / 3);
+        height: calc((100vw - 30vw - 5vw) / 3);
+    }
+
+    .userProfilePhotoSection{
+        width: 90%;
+    }
+
+}
+
+@media screen and (max-width: 600px){
+
+    .userProfileMainBox{
+        height: calc(100vh - 60px);
+    }
+
+    .imgBox{
+        width: calc((100vw - 70px - 14vw) / 3);
+        height: calc((100vw - 70px - 14vw) / 3);
+    }
+}
+
+@media screen and (max-width: 440px){
+
+    .userProfilePhotoSection{
+        width: 95%;
+    }
+
+    .userProfileMainBox{
+        height: calc(100vh - 70px - 60px);
+    }
+
+    .imgBox{
+        width: calc((100vw) / 3.3);
+        height: calc((100vw) / 3.3);
+    }
 }

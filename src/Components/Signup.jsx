@@ -4,7 +4,8 @@ import {signInWithPopup, FacebookAuthProvider, GoogleAuthProvider} from 'firebas
 import connect from '../Images/connect.png'
 import {GrFacebook} from 'react-icons/gr'
 import {GrGoogle} from 'react-icons/gr'
-import { auth } from '../firebase'
+import {VscEye, VscEyeClosed} from 'react-icons/vsc'
+import { auth, db } from '../firebase'
 import { useNavigate, Link } from 'react-router-dom'
 import {userDataContext} from '../App'
 import '../stylesheets/login.css'
@@ -12,8 +13,22 @@ import '../stylesheets/login.css'
 const Signup = () => {
     const {signupCredentials, setSignupCredentials} = useContext(userDataContext)
     const [error, setError] = useState('')
+    const [showPassword, setShowPassword] = useState(true)
+    const [allUserName, setAllUserName] = useState([])
     // const setSignupCredentials = useContext(userDataContext)
     const navigate = useNavigate()
+
+    useEffect(() => {
+        db.collection('usersData').onSnapshot(snapshot => {
+            setAllUserName(snapshot?.docs?.map(doc => {
+                return(
+                    doc.id
+                )
+            }))
+        })
+    }, [])
+
+    console.log(allUserName)
 
     const handleInput = (event) => {
         let newSet = {
@@ -55,6 +70,11 @@ const Signup = () => {
     }
 
     const createNewUser = () => {
+        if(allUserName?.includes(signupCredentials?.username)){
+            return(
+                setError("Username already taken ❕")
+            )
+        }
         auth.createUserWithEmailAndPassword(signupCredentials.loginId, signupCredentials.password)
         .then(() => {
             console.log("New User Created")
@@ -114,7 +134,35 @@ const Signup = () => {
                         <input onKeyUp={signUp} onChange={handleInput} name='loginId' className='inputBox' type='email' placeholder='Email address' required/>
                         <input onKeyUp={signUp} onChange={handleInput} name='fullname' className='inputBox' type='text' placeholder='Full name' required/>
                         <input onKeyUp={signUp} onChange={handleInput} name="username" className='inputBox' type='text' placeholder='Username' required/>
-                        <input onKeyUp={signUp} onChange={handleInput} name='password' className='inputBox' type='password' placeholder='Password' required/>
+                        <Stack className='inputPasswordBox' direction='row' spacing={1.5} justifyContent='space-between'alignItems='center'>
+                            <input onKeyUp={signUp} onChange={handleInput} name='password' className='inputBoxPassword' type='password' placeholder='Password' required/>
+                            {showPassword ?
+                                <span onClick={() => {
+                                    setShowPassword(!showPassword)
+                                    document.getElementsByClassName('inputBoxPassword')[0].type='text'
+                                }
+                                } style={{fontSize: '14px'}}>🙈</span>
+                                :
+                                <span onClick={() => {
+                                    setShowPassword(!showPassword)
+                                    document.getElementsByClassName('inputBoxPassword')[0].type='password'
+                                }
+                                } style={{fontSize: '14px'}}>🐵</span>
+                            }
+                            {/* {showPassword ?
+                                <VscEye onClick={() => {
+                                    setShowPassword(!showPassword)
+                                    document.getElementsByClassName('inputBoxPassword')[0].type='text'
+                                }
+                                }/>
+                                :
+                                <VscEyeClosed onClick={() => {
+                                    setShowPassword(!showPassword)
+                                    document.getElementsByClassName('inputBoxPassword')[0].type='password'
+                                }
+                                }/>
+                            } */}
+                        </Stack>
 
                         {/* signup with credential button */}
                         <input onClick={createNewUser} type='submit' className='loginButton' value='SIGN UP' />

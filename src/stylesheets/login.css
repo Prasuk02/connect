@@ -100,7 +100,7 @@ html {
     margin: 4.5rem auto 3.0rem;
 }
 
-.inputBox{
+.inputBox, .inputPasswordBox{
     width: 82%;
     padding: 1.2rem 1.2rem;
     margin: auto;
@@ -110,7 +110,17 @@ html {
     font-size: 1.4rem;
 }
 
-.inputBox:hover{
+.inputBoxPassword{
+    border: none;
+    width: 100%;
+    font-size: 1.4rem;
+}
+
+.inputBoxPassword:focus{
+    outline: none;
+}
+
+.inputBox:hover, .inputPasswordBox:hover{
     border: .1rem solid #999;
 }
 

@@ -76,7 +76,7 @@ const SinglePost = ({id, imageUrl, username, caption, likes, currentUsername, se
     <>
         {/* sx used instead of style tag when variable is to be passed */}
         <Box className='singlePostMainBox' sx={{position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', overflow: 'hidden'}}>
-            <Stack direction='row' height='100%'>
+            <div className='singlePostStack'>
                 {/* photo */}
                 <Stack className='singlePostImg' justifyContent='center' backgroundColor='#eee'>
                     {imageUrl[imageIndex].type.includes('image') ?
@@ -171,7 +171,7 @@ const SinglePost = ({id, imageUrl, username, caption, likes, currentUsername, se
                         <i onClick={postComment} class="postBtn2" style={{visibility: comment?.length==0 ? 'hidden': 'visible'}}>Post</i>
                     </Stack>
                 </Box>
-            </Stack>
+            </div>
         </Box>
 
         <Snackbar open={alertStatus} autoHideDuration={5000} onClose={handelAlert} sx={{position: 'fixed', bottom: '0px', right: '0px'}}>
