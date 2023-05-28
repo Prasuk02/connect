@@ -166,6 +166,14 @@ function AddNewPost({username}){
         }
     }
 
+    const newPostNextBtn = () => {
+        document.getElementsByClassName('postImgBox')[0].style ='display: none';
+        document.getElementsByClassName('newPostCaptionBox')[0].style ='display: block; width: 100%';
+        document.getElementsByClassName('newPostNextBtn')[0].style ='display: none';
+        document.getElementsByClassName('newPostShareBtn')[0].style ='display: inline-block';
+        console.log('clicked next btn')
+    }
+
     return(
         <>
             <Backdrop open='true' sx={{zIndex: (theme) => theme.zIndex.drawer + 1 }}>
@@ -173,7 +181,8 @@ function AddNewPost({username}){
                     <Stack px='20px' direction='row' alignItems='center' justifyContent='space-between'>
                         <i onClick={closeCreate} className='bi bi-arrow-left' style={{fontSize: '20px'}}></i>
                         <p style={{textAlign: 'center', fontWeight: '500', padding: '13px 0px', fontSize: '16px'}}>Create new post</p>
-                        <p onClick={newPostToFirebase} style={{fontSize: '14px', color: '#007CCE', fontWeight: '500'}}>Share post</p>
+                        <p className='newPostShareBtn' onClick={newPostToFirebase}>Share post</p>
+                        <p className='newPostNextBtn' onClick={newPostNextBtn} >Next</p>
                     </Stack>  
                     <Box style={{borderTop: '1px solid #ddd'}}></Box>
                     <Box className='addPostBox' height='100%'>
@@ -215,11 +224,11 @@ function AddNewPost({username}){
                                 <Box width='max-content' m='auto'>
                                     <i class="bi bi-image" style={{fontSize: '190px', color: '#ddd'}}></i>
                                 </Box>
-                                <Stack m='auto' width='max-content' className='selectImage' direction='row' alignItems='center' spacing={1}>
+                                <div className='selectImage'>
                                     <BsImages style={{width: '20px', height: '20px'}}/>
                                     <label className='buttonText' htmlFor='newPost'>Select Image or Video</label>
                                     <input onChange={handleFile} accept="image/*, video/*" id='newPost' type='file' style={{display: 'none'}}/>
-                                </Stack>
+                                </div>
                             </Box>
                         }
                         <Box className='newPostCaptionBox' width='43%' pt='18px' borderLeft= '1px solid #eee'>
