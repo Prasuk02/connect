@@ -12,7 +12,7 @@ const Modal_Alert = ({alertDisplay, setAlertDisplay}) => {
 
   return (
     <Snackbar open={alertDisplay?.open} autoHideDuration={2000} onClose={handleAlert}>
-      <Alert variant='filled' severity={alertDisplay?.status} onClose={handleAlert} sx={{ width: '100%', fontFamily: 'Segoe UI, Tahoma, Geneva', fontWeight: '600'}}>
+      <Alert variant='filled' severity={alertDisplay?.status} onClose={handleAlert} sx={{ width: '100%', fontWeight: '500', fontSize: '14px'}}>
         {alertDisplay?.msg}
       </Alert>
     </Snackbar>

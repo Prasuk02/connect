@@ -118,6 +118,15 @@
     font-weight: 600;
 }
 
+.noContent{
+    width: max-content;
+    margin: 20px auto 0px;
+    font-size: 13px;
+    color: #e64051;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
 @media screen and (max-width: 998px){
     
 }

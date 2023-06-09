@@ -76,12 +76,19 @@ const RightSideBar = ({username, currentUserProfileData}) => {
               </Stack>
 
               <Box className='boxDivider'></Box>
+              {currentUserProfileData?.requests?.length > 0 ? 
+                currentUserProfileData?.requests?.slice(0).reverse().map((req) => {
+                  return(
+                    <FriendRequestList reqFullname={req.reqFullname} reqUsername={req.reqUsername} reqProfilePic={req.reqProfilePic} currentUserProfileData={currentUserProfileData}/>
+                  )
+                })
 
-              {currentUserProfileData?.requests?.slice(0).reverse().map((req) => {
-                return(
-                  <FriendRequestList reqFullname={req.reqFullname} reqUsername={req.reqUsername} reqProfilePic={req.reqProfilePic} currentUserProfileData={currentUserProfileData}/>
-                )
-              })}
+                :
+
+                <Box>
+                  <p className='noContent'>no friend request yet!!</p>
+                </Box>
+              }
           </Box>
 
 

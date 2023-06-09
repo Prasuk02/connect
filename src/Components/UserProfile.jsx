@@ -141,14 +141,14 @@ const UserProfile = () => {
                 {/* post section */}
                 <Box className='userProfileMainBox'>
                     <Box className='userProfilePhotoSection'>
-                        <Stack direction='row' spacing={5} alignItems='flex-start' backgroundColor= "white" borderRadius='10px'>
+                        <Stack className='userProfileDataSection' direction='row' spacing={5} alignItems='flex-start' backgroundColor= "white" borderRadius='10px'>
                             <Box pt='7px'>
                                 <Avatar className='userAvatarProfilePic' src={userProfileData?.profilePic} />
                             </Box>
 
                             <Stack width='100%' direction='row' justifyContent='space-between' alignItems='flex-start'>
                                 <Stack>
-                                    <Stack direction='row' alignItems='center' spacing={2.5}>
+                                    <Stack className='profileUserNameSection' direction='row' alignItems='center' spacing={2.5}>
                                         <p className='profileUserName'>{username}</p>
                                         {username !== currentUser?.displayName ?
                                             userProfileData?.followers?.some(acc => acc.followerUsername == currentUser?.displayName) ?
@@ -163,35 +163,46 @@ const UserProfile = () => {
                                     </Stack>
                                     <Stack mt='12px' direction='row' spacing={3} alignItems='center'>
                                         {/* no. of posts */}
-                                        <Stack direction='row' spacing={0.8} alignItems='center'>
-                                        <p className='fontType' style={{fontSize: '16px', color: '#222', fontWeight: '600'}}>{profilePost?.length}</p>
-                                        <p className='fontType' style={{fontSize: '16px', color: '#222'}}>Posts</p>
-                                        </Stack>
+                                        <div className='profileUserPFF'>
+                                        <p className='profileUserPFFData' style={{fontWeight: '600'}}>{profilePost?.length}</p>
+                                        <p className='profileUserPFFData'>Posts</p>
+                                        </div>
                                         {/* no. of followers */}
-                                        <Stack onClick={showFollowers} direction='row' spacing={0.8} alignItems='center'>
-                                        <p className='fontType' style={{fontSize: '16px', color: '#222', fontWeight: '600'}}>{userProfileData?.followers?.length}</p>
-                                        <p className='fontType' style={{fontSize: '16px', color: '#222'}}>Followers</p>
-                                        </Stack>
+                                        <div onClick={showFollowers} className='profileUserPFF'>
+                                        <p className='profileUserPFFData' style={{fontWeight: '600'}}>{userProfileData?.followers?.length}</p>
+                                        <p className='profileUserPFFData'>Followers</p>
+                                        </div>
                                         {/* no. of followings */}
-                                        <Stack onClick={showFollowing} direction='row' spacing={0.8} alignItems='center'>
-                                        <p className='fontType' style={{fontSize: '16px', color: '#222', fontWeight: '600'}}>{userProfileData?.following?.length}</p>
-                                        <p className='fontType' style={{fontSize: '16px', color: '#222'}}>Following</p>
-                                        </Stack>
+                                        <div onClick={showFollowing} className='profileUserPFF'>
+                                        <p className='profileUserPFFData' style={{fontWeight: '600'}}>{userProfileData?.following?.length}</p>
+                                        <p className='profileUserPFFData'>Following</p>
+                                        </div>
                                     </Stack>
 
-                                    <p className='profile_Fullname'>{userProfileData?.fullname}</p>
-                                    {userProfileData?.biodata?.map((bio) => {
-                                        return(
-                                            <p className='bioData fontType'>{bio}</p>
-                                        )
-                                    })}
-                                    <a className='bioLink fontType' href={userProfileData?.biolink} >{userProfileData?.biolink}</a>
+                                    <Box className='bioSection'>
+                                        <p className='profile_Fullname'>{userProfileData?.fullname}</p>
+                                        {userProfileData?.biodata?.map((bio) => {
+                                            return(
+                                                <p className='bioData'>{bio}</p>
+                                            )
+                                        })}
+                                        <a className='bioLink' href={userProfileData?.biolink} >{userProfileData?.biolink}</a>
+                                    </Box>
                                 </Stack>
                                 {currentUser?.displayName == username &&
                                     <Button onClick={setStatus} className='fontType' style={{border: 'none', color: '#198779', textTransform: 'capitalize', fontSize: '14.5px', backgroundColor: '#ECFFF6'}}>Edit Profile</Button>
                                 }
                             </Stack>
                         </Stack>
+                        <Box className='bioSection-1'>
+                                        <p className='profile_Fullname'>{userProfileData?.fullname}</p>
+                                        {userProfileData?.biodata?.map((bio) => {
+                                            return(
+                                                <p className='bioData'>{bio}</p>
+                                            )
+                                        })}
+                                        <a className='bioLink' href={userProfileData?.biolink} >{userProfileData?.biolink}</a>
+                                    </Box>
 
                         <Box mt='50px' backgroundColor='white' borderRadius='5px'>
                             <p className='fontType' style={{fontSize:'14px', textAlign: 'center', fontWeight: '600', padding: '5px 0px'}}>POSTS</p>

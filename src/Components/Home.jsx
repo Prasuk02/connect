@@ -54,6 +54,13 @@ const Home = () => {
                             open: true
                         })
                     })
+                    .then(() => {
+                        authUser.sendEmailVerification()
+                    })
+                    .then(
+                        console.log("EMAIL VERIFICATION LINK HAS BEEN SENT")
+                    )
+                    .catch(error => console.log(error))
                 }
                 else{
                     setCurrentUser(authUser)

@@ -28,7 +28,7 @@ const Signup = () => {
         })
     }, [])
 
-    console.log(allUserName)
+    // console.log(allUserName)
 
     const handleInput = (event) => {
         let newSet = {
@@ -82,7 +82,7 @@ const Signup = () => {
         })
         .catch((error) => {
             if(error.message ='Firebase: This operation is restricted to administrators only. (auth/admin-restricted-operation).'){
-                setError("Kindly fill up the credentials to sign up successfully")
+                setError("Kindly fill up the credentials or email id already exist")
                 return
             }
             setError(error.message)

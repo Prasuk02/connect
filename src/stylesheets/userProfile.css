@@ -142,6 +142,23 @@
 .userProfilePhotoSection{
     width: 82%;
     margin: auto;
+    margin-top: 30px;
+}
+
+.userProfileDataSection{
+    padding: 20px;
+}
+
+.profileUserPFF{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.profileUserPFFData{
+    font-size: 16px;
+    color: #222;
 }
 
 @media screen and (max-width: 1400px){
@@ -202,5 +219,15 @@
     .imgBox{
         width: calc((100vw) / 3.3);
         height: calc((100vw) / 3.3);
+    }
+
+    .profileUserPFF{
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 0px;
+    }
+
+    .bioSection{
+        display: none;
     }
 }

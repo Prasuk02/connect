@@ -7,7 +7,7 @@
     height: 60vh;
     background-color: white;
     border-radius: 6px;
-    padding: 2px 20px 20px;
+    padding: 2px 0px 20px;
     overflow: hidden auto;
 }
 
@@ -17,7 +17,7 @@
 
 .heading{
     font-weight: 600;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 .modalCloseBtn{

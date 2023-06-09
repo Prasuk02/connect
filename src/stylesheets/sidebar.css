@@ -1,13 +1,13 @@
 .moreOptions{
     position: absolute;
-    bottom: 30px;
-    right: -10%;
+    bottom: 50px;
+    left: 30px;
     border: 1px solid #f0f0f0;
     background-color: rgb(255, 255, 255);
     width: 180px;
     border-radius: 5px;
     display: none;
-    width: 120%;
+    width: 80%;
 }
 
 .moreOptionsItem{

@@ -57,6 +57,7 @@ const Login = () => {
         auth.signInWithEmailAndPassword(loginCredentials.loginId, loginCredentials.password)
         .then(() => {
             console.log('Login successful')
+            
             navigate('/home')
         })
         .catch((error) => {
