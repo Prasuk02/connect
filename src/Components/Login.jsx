@@ -7,6 +7,7 @@ import Microsoft from '../Images/Microsoft.png'
 import {GrFacebook, GrGoogle} from 'react-icons/gr'
 import { Link, useNavigate } from 'react-router-dom'
 import { auth } from '../firebase'
+import firebase from 'firebase/compat/app';
 import '../stylesheets/login.css' 
  
 const Login = () => {
@@ -43,6 +44,8 @@ const Login = () => {
 
     const signInWithGoogle = () => {
         const provider = new GoogleAuthProvider();
+        provider.addScope('email')
+        provider.addScope('profile')
         signInWithPopup(auth, provider)
         .then(() => {
             console.log('Login successful')
@@ -57,7 +60,7 @@ const Login = () => {
         auth.signInWithEmailAndPassword(loginCredentials.loginId, loginCredentials.password)
         .then(() => {
             console.log('Login successful')
-            
+
             navigate('/home')
         })
         .catch((error) => {
@@ -149,7 +152,11 @@ const Login = () => {
                             </Stack>
 
                             {/* forgot password buttom */}
-                            <p className='forget'>Forgotten your password?</p>
+                            <p className='forget' onClick={() => {
+                                firebase.auth().sendPasswordResetEmail(loginCredentials.loginId)
+                                .then(() => console.log('--------------------------'))
+                                .catch(error => alert(error.message))
+                            }}>Forgotten your password?</p>
                         </Stack>
                     </Box>
                         

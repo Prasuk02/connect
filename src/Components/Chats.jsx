@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import {Box, Stack, Button, Avatar} from '@mui/material'
-import {db} from '../firebase'
+import {auth, db} from '../firebase'
 import ChatUserBox from './ChatUserBox'
 import { userDataContext } from '../App'
 import '../stylesheets/chatLayout.css'
@@ -8,22 +8,29 @@ import Navbar from './Navbar'
 import SideBar from './SideBar'
 import { generateDocID, encryptData, decryptData } from '../encryptDecryptFunc'
 import { arrayUnion, serverTimestamp } from 'firebase/firestore'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ChatUserFinder from './ChatUserFinder'
+import { storage } from '../firebase'
 
 const Chats = () => {
 
-  const {currentUserProfileData, setNotificationModalDisplay} = useContext(userDataContext)
-  const [chatDetails, setChatDetails] = useState()
+  const {currentUserProfileData, setCurrentUserProfileData, setNotificationModalDisplay, setCurrentUser} = useContext(userDataContext)
+  const [chatDetails, setChatDetails] = useState({})
   const [allUsersChat, setAllUsersChat] = useState([])
   const [allUsersData, setAllUsersData] = useState([])
   const [currentChat, setCurrentChat] = useState()
   const [msg, setMsg] = useState('')
   const [chatOpen, setChatOpen] = useState(0)
   const [openAllUsers, setOpenAllUsers] = useState(0)
+  const [sendImg, setSendImg] = useState()
+  const [sendImgPrev, setSendImgPrev] = useState('')
+  const [enlargeImg, setEnlargeImg] = useState(0)
+  const navigate = useNavigate()
+
+  // navigate('/*')
   
   useEffect(() => {
-    db.collection('chats').where('sender.username', '==', currentUserProfileData?.username).orderBy('lastChatUpdate', 'desc').onSnapshot(snapshot => {
+    db.collection('chats').where('sender.username', '==', currentUserProfileData?.username).orderBy("lastChatUpdate", "desc").onSnapshot(snapshot => {
       setAllUsersChat(snapshot.docs.map(doc => {
         return(
           {
@@ -49,13 +56,14 @@ const Chats = () => {
     setMsg(event.target.value)
   }
 
-  const sendMsg = async() => {
+  const sendMsg = async(type) => {
     const chatId = await generateDocID(currentUserProfileData?.uid, currentChat?.uid)
     db.collection('chats').doc(chatId).update({
       chats: arrayUnion({
         sender: currentUserProfileData?.username,
         senderProfilePic: currentUserProfileData?.profilePic,
-        message: encryptData(msg)
+        message: encryptData(msg),
+        msgType: type
       }),
       lastChatUpdate: serverTimestamp()
     })
@@ -65,7 +73,8 @@ const Chats = () => {
       chats: arrayUnion({
         sender: currentUserProfileData?.username,
         senderProfilePic: currentUserProfileData?.profilePic,
-        message: encryptData(msg)
+        message: encryptData(msg),
+        msgType: type
       }),
       lastChatUpdate: serverTimestamp()
     })
@@ -87,8 +96,10 @@ const Chats = () => {
 
   useEffect(() => {
     const runUseEffect = async(userData) => {
-        if(!chatDetails){
-            console.log("setting")
+      console.log('***********************************************************')
+      console.log(chatDetails)
+        if(chatDetails == undefined){
+            console.log("called runUseEffect function")
             console.log(currentChat)
             const chatDocId = await generateDocID(currentUserProfileData?.uid, userData?.uid)
             db.collection('chats').doc(chatDocId).set({
@@ -125,18 +136,69 @@ const Chats = () => {
                 chats: [],
                 lastChatUpdate: serverTimestamp()
             })
-        }
+          }
     }
 
-    allUsersData.map((user) => {
-        if(user?.userData?.username == currentChat?.username){
-          console.log('Hi')
-            return(
-                runUseEffect(user?.userData)
-            )
-        }
-    })
-  }, [chatDetails])
+    if(currentChat){
+        console.log('wait calling runUseEffect function...')
+        runUseEffect(currentChat)
+      }
+
+    console.log("USE EFFECT CALLED WITH CHAT DETAILS ")
+    // console.log(chatDetails)
+    console.log(currentChat)
+    // console.log(allUsersData)
+  }, [currentChat && chatDetails])
+
+  const handleSendImg = (event) => {
+    if(event.target.files[0]){
+      setSendImg(event.target.files[0])
+      setSendImgPrev(URL.createObjectURL(event.target.files[0]))
+    }
+  }
+
+  const sendImgBtn = (type) => {
+    storage.ref(`chats/${currentUserProfileData?.username}/${sendImg?.name}`).put(sendImg).then(
+      (snapshot) => {
+        storage.ref(`chats/${currentUserProfileData?.username}`)
+        .child(sendImg?.name)
+        .getDownloadURL()
+        .then(async(url) => {
+          let generateId1 = await generateDocID(currentUserProfileData?.uid, currentChat?.uid)
+          db.collection('chats').doc(generateId1).update({
+            chats: arrayUnion({
+              msgType: type,
+              sender: currentUserProfileData?.username,
+              senderProfilePic: currentUserProfileData?.profilePic,
+              message: encryptData(url)
+            }),
+            lastChatUpdate: serverTimestamp()
+          })
+
+          const chatId2 = await generateDocID(currentChat?.uid, currentUserProfileData?.uid)
+          db.collection('chats').doc(chatId2).update({
+            chats: arrayUnion({
+              sender: currentUserProfileData?.username,
+              senderProfilePic: currentUserProfileData?.profilePic,
+              message: encryptData(url),
+              msgType: type
+            }),
+            lastChatUpdate: serverTimestamp()
+          })
+          .then(() =>
+            {
+              setSendImg()
+              setSendImgPrev('')
+            }
+          )
+        })
+      }
+    )
+  }
+
+  // console.log(allUsersData)
+  console.log(currentChat)
+  console.log(chatDetails)
       
   return (
     <>
@@ -188,25 +250,55 @@ const Chats = () => {
                     <i onClick={closeChat} className='bi bi-x chatCloseBtn'></i>
                   </Stack>
 
-                  <Stack className='msgBox' p='20px' height='100%' style={{overflow: 'hidden auto'}}>
-                    {chatDetails?.chats?.map(chat => {
-                      return(
-                        chat.sender == currentUserProfileData?.username ?
-                        <Stack mt='7px' width='100%' direction='row' alignItems='center' spacing={1.1} justifyContent='flex-end'>
-                          <p className='msgTextStyle' style={{backgroundColor: '#efefef'}}>{decryptData(chat.message)}</p>
-                        </Stack>
-                        :
-                        <Stack mt='9px' width='100%' direction='row' alignItems='flex-end' spacing={1.1} justifyContent='flex-start'>
-                          <Avatar src={chat?.senderProfilePic} style={{width: '24px', height: '24px'}}/>
-                          <p className='msgTextStyle'>{decryptData(chat.message)}</p>
-                        </Stack>
-                      )
-                    })}
-                  </Stack>
-                
-                  <Stack direction='row' px='20px' pb='20px' spacing={1} alignItems='center' justifyContent='center'> 
-                    <input onChange={handleMsg} className='msgInputBox' type='text' placeholder='Message...' value={msg}/>
-                    <button onClick={sendMsg} className='sendMsgBtn'>Send</button>
+                  {sendImgPrev == '' ? 
+                    <Stack className='msgBox' p='20px' height='100%' style={{overflow: 'hidden auto'}}>
+                      {chatDetails?.chats?.map(chat => {
+                        return(
+                          <Stack mt='9px' width='100%' direction='row' alignItems='center' spacing={1.1} justifyContent={chat?.sender == currentUserProfileData?.username ? 'flex-end' : 'flex-start'}>
+                            {chat?.msgType == 'text' &&
+                              <p className='msgTextStyle' style={{backgroundColor: '#efefef'}}>{decryptData(chat.message)}</p>
+                            }
+                            {chat?.msgType == 'image' &&
+                              <img onClick={() => {
+                                setSendImgPrev(decryptData(chat?.message))
+                                setEnlargeImg(1)
+                              }} src={decryptData(chat?.message)} style={{width: '200px', height: '200px', objectFit: 'cover', objectPosition: 'center', borderRadius: '20px'}}/>
+                            }
+                            {chat?.msgType == 'post' &&
+                              <Box width='200px' style={{borderRadius: '20px', backgroundColor: '#f9f9f9'}}>
+                                <Stack p='10px' direction='row' alignItems='center' spacing={1.3}>
+                                  <Avatar sx={{width: '25px', height: '25px'}} src={chat?.postUserAvatar} alt='profilePic'/>
+                                  <p className='postUsername'>{chat?.postUsername}</p>
+                                </Stack>
+                                <img src={decryptData(chat?.message)} style={{width: '200px', height: '200px', objectFit: 'cover', objectPosition: 'center'}}/>
+                                <p className='postCaption'><span style={{fontWeight: '500'}}>{chat?.postUsername}</span> {chat?.postCaption}</p>
+                              </Box>
+                            }
+                          </Stack>
+                        )
+                      })}
+                    </Stack>
+                    :
+                    <Stack className='prevSection' alignItems='center' justifyContent='center'>
+                      <img src={sendImgPrev} className='sendImgPrev'/>
+                      {enlargeImg === 0 &&
+                        <button onClick={() => sendImgBtn('image')} className='sendImgBtn'>send</button>
+                      }
+                      <button onClick={() => {
+                        setSendImgPrev('')
+                        setEnlargeImg(0)
+                        }} className='closePrevBtn bi bi-x'></button>
+                    </Stack>
+                  }
+                  <Stack style={{display: sendImgPrev != '' && 'none'}} direction='row' px='20px' py='15px' spacing={1} alignItems='center' justifyContent='center'> 
+                    <input onChange={handleMsg} onKeyUp={(key) => {
+                      if(key.code == 'Enter'){
+                        sendMsg('text')
+                      }
+                    }} className='msgInputBox' type='text' placeholder='Message...' value={msg}/>
+                    <button onClick={() => sendMsg('text')} className='sendMsgBtn'>Send</button>
+                    <label htmlFor='sendImg' className='bi bi-image sendMsgBtn' style={{paddingTop: '8px', fontSize: '17px'}}></label>
+                    <input onChange={handleSendImg} type='file' id='sendImg' accept='image/*' style={{display: 'none'}}/>
                   </Stack>
                 </Stack>
                 : 

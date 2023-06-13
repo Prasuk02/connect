@@ -25,6 +25,41 @@ const Home = () => {
             if(authUser){
                 // user is signed in
                 // console.log(authUser)
+
+                // else if((Date.now() - authUser.metadata.createdAt) <= 100000){
+                    if(((Date.now() - authUser.metadata.createdAt) <= 100000) && ((authUser?.providerData[0]?.providerId == 'google.com') || (authUser?.providerData[0]?.providerId == 'facebook.com'))){
+                        // new user from google or fb
+                        authUser.updateProfile({
+                            displayName: authUser?.displayName?.replace(' ', '_')?.toLowerCase()
+                        })
+                        .then(() => {
+                            setCurrentUser(authUser)
+                            console.log('currentUser created from fb or google --------------------------')
+                        })
+                        
+                        db.collection("usersData").doc(authUser?.displayName?.replace(' ', '_')?.toLowerCase()).set({
+                            username: authUser?.displayName?.replace(' ', '_')?.toLowerCase(),
+                            fullname: '',
+                            email: authUser?.providerData[0]?.email,
+                            post: [],
+                            followers: [],
+                            following: [],
+                            requests: [],
+                            profilePic: authUser?.providerData[0]?.photoURL,
+                            biolink: ' ',
+                            biodata: [],
+                            uid: authUser?.uid,
+                            isVerified: authUser?.emailVerified
+                        }).then(() => {
+                            setAlertDisplay({
+                                status: 'success',
+                                msg: 'Login Successful',
+                                open: true
+                            })
+                        })
+                        .catch(error => console.log(error))
+                    }
+
                 if(Object.keys(signupCredentials).length != 0){
                     // new user
                     authUser.updateProfile({
@@ -46,7 +81,8 @@ const Home = () => {
                         profilePic: '',
                         biolink: ' ',
                         biodata: [],
-                        uid: authUser?.uid
+                        uid: authUser?.uid,
+                        isVerified: authUser?.emailVerified
                     }).then(() => {
                         setAlertDisplay({
                             status: 'success',
@@ -62,6 +98,7 @@ const Home = () => {
                     )
                     .catch(error => console.log(error))
                 }
+
                 else{
                     setCurrentUser(authUser)
                 }

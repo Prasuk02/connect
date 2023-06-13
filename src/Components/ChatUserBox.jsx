@@ -17,9 +17,9 @@ const ChatUserBox = ({userData, setCurrentChat, currentChat, chatDetails, setCha
         // console.log(chatDocId)
         db.collection('chats').doc(chatDocId).onSnapshot(doc => {
             setChatDetails(doc.data())
-        }) 
-        setChatOpen(1)
+        })
         setCurrentChat(userData)
+        setChatOpen(1)
         setOpenAllUsers(0)
     }
 

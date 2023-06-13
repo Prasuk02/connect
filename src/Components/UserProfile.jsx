@@ -143,7 +143,7 @@ const UserProfile = () => {
                     <Box className='userProfilePhotoSection'>
                         <Stack className='userProfileDataSection' direction='row' spacing={5} alignItems='flex-start' backgroundColor= "white" borderRadius='10px'>
                             <Box pt='7px'>
-                                <Avatar className='userAvatarProfilePic' src={userProfileData?.profilePic} />
+                                <Avatar className='userAvatarProfilePic' src={userProfileData?.profilePic} style={{width: '125px', height: '125px'}}/>
                             </Box>
 
                             <Stack width='100%' direction='row' justifyContent='space-between' alignItems='flex-start'>
@@ -194,15 +194,6 @@ const UserProfile = () => {
                                 }
                             </Stack>
                         </Stack>
-                        <Box className='bioSection-1'>
-                                        <p className='profile_Fullname'>{userProfileData?.fullname}</p>
-                                        {userProfileData?.biodata?.map((bio) => {
-                                            return(
-                                                <p className='bioData'>{bio}</p>
-                                            )
-                                        })}
-                                        <a className='bioLink' href={userProfileData?.biolink} >{userProfileData?.biolink}</a>
-                                    </Box>
 
                         <Box mt='50px' backgroundColor='white' borderRadius='5px'>
                             <p className='fontType' style={{fontSize:'14px', textAlign: 'center', fontWeight: '600', padding: '5px 0px'}}>POSTS</p>

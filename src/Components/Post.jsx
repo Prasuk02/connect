@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Box, Alert, Stack, Backdrop, Snackbar} from '@mui/material'
 import {Avatar} from '@mui/material'
 import {Link} from 'react-router-dom'
-import {db} from '../firebase'
+import {db, storage} from '../firebase'
 import { serverTimestamp } from 'firebase/firestore'
 import SinglePost from './SinglePost'
 import '../stylesheets/post_design.css'
@@ -14,6 +14,7 @@ import ReactPlayer from 'react-player'
 import {BsPause, BsFillPlayFill} from 'react-icons/bs'
 import {FaVideo} from 'react-icons/fa'
 import {GoUnmute, GoMute} from 'react-icons/go'
+import { generateDocID, encryptData } from '../encryptDecryptFunc'
 
 const Post = ({id, imageUrl, username, caption, likes, currentUsername, currentUserProfileData, postData}) => {
     // console.log(currentUserProfileData) 
@@ -29,6 +30,25 @@ const Post = ({id, imageUrl, username, caption, likes, currentUsername, currentU
     const [playPauseDisplay, setPlayPauseDisplay] = useState("true")
     const [play, setPlay] = useState(false)
     const [mutePlayer, setMutePlayer] = useState(true)
+    const [allUserSendChat, setAllUserSendChat] = useState([])
+    const [sharePostReceiver, setSharePostReceiver] = useState('')
+    const [shareModal, setShareModal] = useState({
+        open: false,
+        heading: 'Share post with:',
+        content: []
+      })
+
+    useEffect(() => {
+        db.collection('chats').where('sender.username', '==', currentUsername).orderBy("lastChatUpdate", "desc").onSnapshot(snapshot => {
+            setAllUserSendChat(snapshot.docs.map(doc => {
+              return(
+                {
+                  userData: doc.data()
+                }
+              )
+            }))
+          })
+    }, [])
     
     const handelComment = (event) => {
         setComment(event.target.value)
@@ -216,6 +236,22 @@ const Post = ({id, imageUrl, username, caption, likes, currentUsername, currentU
         setIsSaved(!isSaved)
     }
 
+    const sharePost = () => {
+        setShareModal({
+            open: true,
+            heading: 'Share post with:',
+            content: allUserSendChat
+        })
+    }
+
+    const closeModalDisplay = () => {
+        setShareModal({
+            open: false,
+            heading: '',
+            content: []
+        })
+    }
+
     const deletePost = () => {
         db.collection('posts').doc(id).delete()
         .then(setAlertDisplay({
@@ -247,6 +283,58 @@ const Post = ({id, imageUrl, username, caption, likes, currentUsername, currentU
             open: true
         }))
     }
+
+    const sendPostToFriend = (receiver) => {
+        console.log("SENDING POST PLEASE WAIT...")
+        console.log(receiver)
+        db.collection('usersData').doc(receiver).onSnapshot(doc =>
+            setSharePostReceiver(doc.data().uid)
+        )
+    }
+
+    useEffect(() => {
+        const sharePost = async() => {
+            let generateId1 = await generateDocID(currentUserProfileData?.uid, sharePostReceiver)
+            db.collection('chats').doc(generateId1).update({
+                    chats: arrayUnion({
+                    msgType: 'post',
+                    sender: currentUserProfileData?.username,
+                    senderProfilePic: currentUserProfileData?.profilePic,
+                    message: encryptData(imageUrl[imageIndex]?.url),
+                    postCaption: caption,
+                    postUsername: username,
+                    postUserAvatar: postUsernameProfileData?.profilePic
+                }),
+                lastChatUpdate: serverTimestamp()
+            })
+          
+            const chatId2 = await generateDocID(sharePostReceiver, currentUserProfileData?.uid)
+            db.collection('chats').doc(chatId2).update({
+                    chats: arrayUnion({
+                    sender: currentUserProfileData?.username,
+                    senderProfilePic: currentUserProfileData?.profilePic,
+                    message: encryptData(imageUrl[imageIndex]?.url),
+                    msgType: 'post',
+                    postCaption: caption,
+                    postUsername: username,
+                    postUserAvatar: postUsernameProfileData?.profilePic
+                }),
+                lastChatUpdate: serverTimestamp()
+            })
+            .then(() =>
+            {
+                setShareModal({
+                    open: false,
+                    heading: '',
+                    content: []
+                })
+            })
+        }
+
+        if(sharePostReceiver != ''){
+            sharePost()
+        }
+    }, [sharePostReceiver])
 
   return (
     <>
@@ -346,6 +434,7 @@ const Post = ({id, imageUrl, username, caption, likes, currentUsername, currentU
                     <Stack direction='row' alignItems='center' spacing={2}>
                         <p onClick={likeButton} className={isLike? 'icon-liked bi bi-heart-fill' : 'icons bi bi-heart'} id='likeBtn'></p>
                         <p onClick={seeComments} className='icons bi bi-chat-right-text'></p>
+                        <p onClick={sharePost} className='icons bi bi-share' style={{fontSize: '20px'}}></p>
                         {/* <p className='icons bi bi-send'></p> */}
                     </Stack>
                     {/* save */}
@@ -392,6 +481,43 @@ const Post = ({id, imageUrl, username, caption, likes, currentUsername, currentU
                     commentList={commentList}
                     setCommentList={setCommentList}
                 />
+            </Backdrop>
+        }
+
+        {shareModal?.open == true &&
+            <Backdrop open={open} sx={{zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+                <Box className='mainContainer'>
+                    <Stack py='10px' alignItems='center' justifyContent='space-evenly' borderBottom='1px solid #ddd'>
+                        <p className='heading'>{shareModal?.heading}</p>
+                    </Stack>
+
+                    {shareModal?.content?.length > 0 ?
+                        shareModal?.content?.map((list) => {
+                            return(
+                                <>
+                                    <Stack p='11px 22px' direction='row' alignItems='center' justifyContent='space-between' borderBottom='1px solid #e9e9e9'>
+                                        <Stack direction='row' alignItems='center'>
+                                            <Avatar src={list?.userData?.receiver?.profilePic} alt={list?.userData?.receiver?.fullname} style={{width: '48px', height: '48px'}}/>
+                                            <Stack ml='20px'>
+                                                <p style={{fontSize: '14px', color: '#111', fontWeight: '600'}}>{list?.userData?.receiver?.username}</p>
+                                                <p style={{fontSize: '12px', color: '#777'}}>{list?.userData?.receiver?.fullname}</p>
+                                            </Stack>
+                                        </Stack>
+
+                                        <button onClick={() => sendPostToFriend(list?.userData?.receiver?.username)} className='sendPost'>Send Post</button>
+                                    </Stack>
+                                </>
+                            )
+                        })
+                        
+                        :
+                        <Box>
+                            <p className='noSendPost' >sorry!!<br/>Go to chat section to add new friends to share posts with them</p>
+                        </Box>
+                    }
+
+                    <i onClick={closeModalDisplay} className="bi bi-x modalCloseBtn"></i>
+                </Box>
             </Backdrop>
         }
     </>
