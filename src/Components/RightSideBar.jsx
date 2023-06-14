@@ -51,7 +51,7 @@ const RightSideBar = ({username, currentUserProfileData}) => {
                   {/* no. of posts */}
                   <Stack alignItems='center'>
                     <p className='rightUserDetailHeading'>Posts</p>
-                    <p className='rightUserDetail'>10</p>
+                    <p className='rightUserDetail'>{currentUserProfileData?.post?.length}</p>
                   </Stack>
                   {/* no. of followers */}
                   <Stack alignItems='center' ml='5px'>
@@ -101,7 +101,7 @@ const RightSideBar = ({username, currentUserProfileData}) => {
 
               <Box className='boxDivider'></Box>
 
-              {suggestionList?.map(suggestionId => {
+              {suggestionList?.slice(0, 7)?.map(suggestionId => {
                 return(
                   <SuggestionList suggestionId={suggestionId.docId}/>
                 )

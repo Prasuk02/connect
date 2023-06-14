@@ -9,6 +9,7 @@ import './App.css'
 import PostLiked from './Components/PostLiked';
 import Chats from './Components/Chats';
 import Explore from './Components/Explore';
+import CandyCrush from './Components/CandyCrush';
 
 export const userDataContext = createContext("")
 
@@ -58,6 +59,7 @@ function App() {
             <Route path='*' element={<PageNotFound/>}/>
             <Route path='/chats' element={<Chats/>}/>
             <Route path='/explore' element={<Explore/>}/>
+            <Route path='/game' element={<CandyCrush/>}/>
           </Routes>
         </Router>
       </userDataContext.Provider>

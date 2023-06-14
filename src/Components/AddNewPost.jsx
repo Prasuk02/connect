@@ -15,7 +15,7 @@ function AddNewPost({username}){
     const [preview, setPreview] = useState([])
     const [prevKey, setPrevKey] = useState(0)
     const [docId, setDocId] = useState('')
-    const [postCategories, setPostCategories] = useState([])
+    const [postCategories, setPostCategories] = useState(['All'])
 
     const handleCaption = (event) => {
         setCaption(event.target.value)
@@ -64,6 +64,7 @@ function AddNewPost({username}){
 
     const newPostToFirebase = async() => {
             if(imageUrl.length > 0){
+                document.getElementsByClassName('newPostShareBtn')[0].disabled = true
                 storage.ref(`images/${imageUrl[0].name}`).put(imageUrl[0]).then((snapshot) => {
                     console.log('Uploaded file in storage');
                     storage.ref('images')
@@ -116,6 +117,9 @@ function AddNewPost({username}){
     useEffect(() => {
         if(docId != ''){
             console.log(docId)
+            db.collection('usersData').doc(currentUserProfileData?.username).update({
+                post: arrayUnion(docId)
+            })
             if(imageUrl.length > 1){
                 for(let img=1; img < imageUrl.length; img++){
                     console.log("USE EFFECT CALLED USE EFFECT CALLED USE EFFECT CALLED USE EFFECT CALLED USE EFFECT CALLED ")
@@ -155,6 +159,7 @@ function AddNewPost({username}){
                 }
             }
         }
+        document.getElementsByClassName('newPostShareBtn')[0].disabled = false
     }, [docId])
 
     const addPostCategory = (element) => {
@@ -247,7 +252,7 @@ function AddNewPost({username}){
                             <Box style={{borderTop: '1px solid #ddd'}}>
                                 <Box p='13px'>
                                     <p style={{marginTop: '2px', fontSize: '13.5px', fontWeight: '600', color: '#222'}}>Select Post Category:</p>
-                                    <Stack className='categoryList' height='100px' mt='3px' direction='row' alignItems="center" justifyContent='flex-start' flexWrap='wrap' overflow='auto'>
+                                    <Stack className='categoryList' height='max-content' mt='3px' direction='row' alignItems="center" justifyContent='flex-start' flexWrap='wrap' overflow='auto'>
                                         {postCategoriesContent?.map((element) => {
                                             return(
                                                 <span onClick={() => addPostCategory(element)} className='categoryList' style={{marginTop: '8px', marginRight: '10px', fontSize: '13px', fontWeight: '500', color: postCategories.includes(element) ? '#000' : '#333', backgroundColor: postCategories.includes(element) ? '#e5e5e5' : '#f1f1f1', borderRadius: '10px', border: '1px solid #efefef', padding: '3px 9px'}}>{element}</span>

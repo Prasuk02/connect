@@ -15,7 +15,22 @@ import '../stylesheets/mediaQueryHome.css'
 const Explore = () => {
     const {currentUser, alertDisplay, setAlertDisplay, currentSelect } = useContext(userDataContext)
     const {notificationModalDisplay, setNotificationModalDisplay} = useContext(userDataContext)
-    const [filterPost, setFilterPost] = useState([])
+    const [filterPost, setFilterPost] = useState(['All'])
+    const [explorePost, setExplorePost] = useState([])
+
+    useEffect(() => {
+        db.collection('posts').where('category', "array-contains-any", filterPost).onSnapshot(snapshot => {
+            setExplorePost(snapshot.docs.map((doc) => {
+                return(
+                    {
+                        postData: doc?.data(),
+                        id: doc?.id
+                    }
+                )
+            }))
+        })
+    }, [filterPost])
+    console.log(explorePost)
 
     const moveRight = () => {
         document.getElementsByClassName('explore_list')[0].style = 'transform: translate(-30%, 0%)'
@@ -27,9 +42,16 @@ const Explore = () => {
 
     const addFilterPost = (category) => {
         if(filterPost.includes(category)){
-            setFilterPost(filterPost.filter(element => {
+            let newArr = []
+            newArr = filterPost.filter(element => {
                 return element != category
-            }))
+            })
+            if(newArr.length == 0){
+                setFilterPost(['All'])
+            }
+            else{
+                setFilterPost(newArr)
+            }
         }
         else{
             setFilterPost([...filterPost, category])
@@ -66,13 +88,13 @@ const Explore = () => {
                             </Box>
                             <i onClick={moveRight} className="bi bi-caret-right-fill" style={{color: '#333', backgroundColor: '#eee', marginLeft: '5px', padding: "6px 6px 5px", borderRadius: '4px'}}></i>
                         </Stack>
-                        {/* <Stack direction='row' alignItems='center' flexWrap='wrap'>
-                            {explorePosts?.map((post) => {
+                        <Stack direction='row' alignItems='center' flexWrap='wrap'>
+                            {explorePost?.map((post) => {
                                 return(
                                     <ProfilePost data={post} currentUser={currentUser} id={post?.id}/>
                                 )
                             })}
-                        </Stack> */}
+                        </Stack>
                     </Box>
                 </Box>
             </div>

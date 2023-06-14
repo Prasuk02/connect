@@ -1,0 +1,25 @@
+.CandyCrush {
+    display: flex;
+    padding: 30px;
+    padding-left: 100px;
+    justify-content: space-between;
+    
+  }
+  
+  .game {
+    width: 562px;
+    height: 562px;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid rgb(238, 238, 238);
+    background-color: #ffffff;
+    border-radius: 10px;
+  }
+  
+  .game img {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #ececec;
+    padding: 10px;
+    border-radius: 8px;
+  }

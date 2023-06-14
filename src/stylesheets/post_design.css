@@ -100,8 +100,8 @@
     top: 25px;
     left: 0px;
     background-color: white;
-    border: 1px solid #e6e6e6;
-    border-bottom: none;
+    /* border: 1px solid #e6e6e6;
+    border-bottom: none; */
     border-radius: 2px;
     display: none;
     width: 150px;

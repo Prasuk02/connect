@@ -54,6 +54,10 @@ const SidebarBox = ({element, currentUsername, setNotificationModalDisplay}) => 
             navigate('/explore')
         }
 
+        if(element.name == 'Game'){
+            navigate('/game')
+        }
+
         setCurrentSelect(element.name)
     }
   return (

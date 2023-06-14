@@ -22,7 +22,7 @@ export const sidebarContent = [
     {icon: 'bi bi-house-door', name: 'Home'},
     {icon: 'bi bi-search', name: 'Search'},
     {icon: 'bi bi-compass', name: 'Explore'},
-    // {icon: 'bi bi-film', name: 'Reels'},
+    {icon: 'bi bi-controller', name: 'Game'},
     {icon: 'bi bi-chat-dots', name: 'Messages'},
     {icon: 'bi bi-heart', name: 'Notifications'},
     {icon: 'bi bi-plus-square', name: 'Create'},
