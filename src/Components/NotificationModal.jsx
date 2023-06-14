@@ -56,7 +56,7 @@ const NotificationModal = ({content, type, setNotificationModalDisplay}) => {
                                     <p className='notifyText'><span style={{fontWeight: '600'}}>{element.username} </span>{element.msg}.</p>
                                 </Stack>
 
-                                <img class='notifyPost' src={element.post}/>
+                                <img class='notifyPost' src={element?.notification?.post[0]?.url}/>
                             </Stack>
                         )
                     })
