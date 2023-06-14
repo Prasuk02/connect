@@ -40,7 +40,7 @@ const NotificationModal = ({content, type, setNotificationModalDisplay}) => {
     <>
         <Box className='notifyContainer'>
             <Stack className='textHead' pb='10px' borderBottom='1px solid #ddd'>
-                <p className='textHead'>{type}</p>
+                <p className='textHead'>{type == 'Search' ? "Search Profile" : type}</p>
                 {type == 'Search' &&
                     <input onChange={handleSearchText} className='searchInputBox' type='text' placeholder='Search'/>
                 }
