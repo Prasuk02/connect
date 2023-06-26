@@ -39,12 +39,14 @@ const NotificationModal = ({content, type, setNotificationModalDisplay}) => {
   return (
     <>
         <Box className='notifyContainer'>
-            <Stack className='textHead' pb='10px' borderBottom='1px solid #ddd'>
+            <Stack className='textHead' pb='10px'>
                 <p className='textHead'>{type == 'Search' ? "Search Profile" : type}</p>
                 {type == 'Search' &&
                     <input onChange={handleSearchText} className='searchInputBox' type='text' placeholder='Search'/>
                 }
             </Stack>
+
+            <Box width='108%' marginLeft='-4%' borderBottom='1px solid #ddd'></Box>
 
             <Box>
                 {type == 'Notifications' ?
@@ -56,7 +58,7 @@ const NotificationModal = ({content, type, setNotificationModalDisplay}) => {
                                     <p className='notifyText'><span style={{fontWeight: '600'}}>{element.username} </span>{element.msg}.</p>
                                 </Stack>
 
-                                <img class='notifyPost' src={element?.notification?.post[0]?.url}/>
+                                <img class='notifyPost' src={element?.post[0]?.url}/>
                             </Stack>
                         )
                     })

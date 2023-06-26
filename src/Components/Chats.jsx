@@ -8,13 +8,14 @@ import Navbar from './Navbar'
 import SideBar from './SideBar'
 import { generateDocID, encryptData, decryptData } from '../encryptDecryptFunc'
 import { arrayUnion, serverTimestamp } from 'firebase/firestore'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ChatUserFinder from './ChatUserFinder'
 import { storage } from '../firebase'
+import NotificationModal from './NotificationModal'
 
 const Chats = () => {
 
-  const {currentUserProfileData, setCurrentUserProfileData, setNotificationModalDisplay, setCurrentUser} = useContext(userDataContext)
+  const {currentUserProfileData, setNotificationModalDisplay, notificationModalDisplay} = useContext(userDataContext)
   const [chatDetails, setChatDetails] = useState({})
   const [allUsersChat, setAllUsersChat] = useState([])
   const [allUsersData, setAllUsersData] = useState([])
@@ -25,9 +26,6 @@ const Chats = () => {
   const [sendImg, setSendImg] = useState()
   const [sendImgPrev, setSendImgPrev] = useState('')
   const [enlargeImg, setEnlargeImg] = useState(0)
-  const navigate = useNavigate()
-
-  // navigate('/*')
   
   useEffect(() => {
     db.collection('chats').where('sender.username', '==', currentUserProfileData?.username).orderBy("lastChatUpdate", "desc").onSnapshot(snapshot => {
@@ -292,11 +290,15 @@ const Chats = () => {
                   }
                   <Stack style={{display: sendImgPrev != '' && 'none'}} direction='row' px='20px' py='15px' spacing={1} alignItems='center' justifyContent='center'> 
                     <input onChange={handleMsg} onKeyUp={(key) => {
-                      if(key.code == 'Enter'){
+                      if(key.code == 'Enter' && msg != ''){
                         sendMsg('text')
                       }
                     }} className='msgInputBox' type='text' placeholder='Message...' value={msg}/>
-                    <button onClick={() => sendMsg('text')} className='sendMsgBtn'>Send</button>
+                    {msg == '' ?
+                      <button disabled onClick={() => sendMsg('text')} className='sendMsgBtn'>Send</button>
+                    :
+                      <button onClick={() => sendMsg('text')} className='sendMsgBtn'>Send</button>
+                    }
                     <label htmlFor='sendImg' className='bi bi-image sendMsgBtn' style={{paddingTop: '8px', fontSize: '17px'}}></label>
                     <input onChange={handleSendImg} type='file' id='sendImg' accept='image/*' style={{display: 'none'}}/>
                   </Stack>
@@ -325,6 +327,10 @@ const Chats = () => {
           setChatDetails={setChatDetails}
           setChatOpen={setChatOpen}
         />
+      }
+
+      {notificationModalDisplay?.open == true &&
+        <NotificationModal content={notificationModalDisplay?.content} type={notificationModalDisplay?.type} totalNotifications={notificationModalDisplay?.content?.length} setNotificationModalDisplay={setNotificationModalDisplay}/>
       }
     </>
   )

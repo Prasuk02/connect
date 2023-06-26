@@ -10,6 +10,8 @@ const SinglePost = ({id, imageUrl, username, caption, likes, currentUsername, se
     const [like, setlike] = useState(likes)
     const [alertStatus, setAlertStatus] = useState(false)
     const [imageIndex, setImageIndex] = useState(0)
+    const [unixTime, setUnixTime] = useState()
+    const [time, setTime] = useState('')
     // console.log(`after: ${like}`)
     // console.log(comment?.length)
     console.log(imageUrl)
@@ -32,7 +34,17 @@ const SinglePost = ({id, imageUrl, username, caption, likes, currentUsername, se
                 )
             }))  
         })
+
+        db.collection('posts').doc(id).onSnapshot(doc => {
+                setUnixTime(doc.data().time.seconds * 1000)
+            }
+        )
     }, [])
+
+    useEffect(() => {
+        let date = new Date(unixTime)
+        setTime(date.toLocaleDateString("en-GB"));
+    }, [unixTime])
 
     const likeButton = () => {
         const updateLike = () => {
@@ -71,6 +83,7 @@ const SinglePost = ({id, imageUrl, username, caption, likes, currentUsername, se
     const handelAlert = () => {
         setAlertStatus(false)
     }
+    console.log(time)
 
     return (
     <>
@@ -152,7 +165,7 @@ const SinglePost = ({id, imageUrl, username, caption, likes, currentUsername, se
                         <p className='likesCount1 singlePostLikeBtn'>{likes} likes</p>
                         
                         {/* post time */}
-                        <p className='fontType postTime singlePostLikeBtn'>31 minutes ago</p>
+                        <p className='fontType postTime singlePostLikeBtn'>{time}</p>
 
                     {/* <Box mt='15px' borderBottom='1px solid #ddd'></Box> */}
                     
@@ -167,7 +180,11 @@ const SinglePost = ({id, imageUrl, username, caption, likes, currentUsername, se
                     </div> */}
 
                     <Stack width='100%' direction='row' alignItems='center' spacing={0} pr='20px' style={{position: 'absolute', bottom: '0px', borderTop: '1px solid #ccc'}}>
-                        <input onChange={handelComment} className='inputCommentBox' type='text' placeholder='Add a comment' value={comment}/>
+                        <input onKeyUp={(key) => {
+                            if(key.code == 'Enter' && comment?.length!=0){
+                                postComment()
+                            }
+                        }} onChange={handelComment} className='inputCommentBox' type='text' placeholder='Add a comment' value={comment}/>
                         <i onClick={postComment} class="postBtn2" style={{visibility: comment?.length==0 ? 'hidden': 'visible'}}>Post</i>
                     </Stack>
                 </Box>
@@ -175,7 +192,7 @@ const SinglePost = ({id, imageUrl, username, caption, likes, currentUsername, se
         </Box>
 
         <Snackbar open={alertStatus} autoHideDuration={5000} onClose={handelAlert} sx={{position: 'fixed', bottom: '0px', right: '0px'}}>
-            <Alert className='alertText' onClose={handelAlert} variant="filled" severity="success" sx={{ width: '100%'}}>
+            <Alert className='alertText' onClose={handelAlert} variant="filled" severity="success" sx={{ width: '100%', fontWeight: '500', fontSize: '14px'}}>
                 Comment added successfully
             </Alert>
         </Snackbar>

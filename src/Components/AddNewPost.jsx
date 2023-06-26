@@ -249,10 +249,10 @@ function AddNewPost({username}){
                                 <textarea onChange={handleCaption} className='inputpost' type='text' placeholder='Write a caption...' value={caption}></textarea>
                             </Box>
                             
-                            <Box style={{borderTop: '1px solid #ddd'}}>
+                            <Box mt='7px' style={{borderTop: '1px solid #ddd'}}>
                                 <Box p='13px'>
                                     <p style={{marginTop: '2px', fontSize: '13.5px', fontWeight: '600', color: '#222'}}>Select Post Category:</p>
-                                    <Stack className='categoryList' height='max-content' mt='3px' direction='row' alignItems="center" justifyContent='flex-start' flexWrap='wrap' overflow='auto'>
+                                    <Stack className='categoryList' height='calc(100px)' mt='3px' direction='row' alignItems="center" justifyContent='flex-start' flexWrap='wrap' overflow='auto'>
                                         {postCategoriesContent?.map((element) => {
                                             return(
                                                 <span onClick={() => addPostCategory(element)} className='categoryList' style={{marginTop: '8px', marginRight: '10px', fontSize: '13px', fontWeight: '500', color: postCategories.includes(element) ? '#000' : '#333', backgroundColor: postCategories.includes(element) ? '#e5e5e5' : '#f1f1f1', borderRadius: '10px', border: '1px solid #efefef', padding: '3px 9px'}}>{element}</span>

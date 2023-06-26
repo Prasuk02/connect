@@ -367,7 +367,9 @@ const Post = ({id, imageUrl, username, caption, likes, currentUsername, currentU
                         </Stack>
 
                     <Box className='optionMainBox' style={{position: 'relative'}}>
-                        <i class="bi bi-three-dots-vertical postThreeDotIcon"></i>
+                        {username == currentUserProfileData?.username && 
+                            <i class="bi bi-three-dots-vertical postThreeDotIcon"></i>
+                        }
                         <Box className='optionBox'>
                             {currentUsername == username &&
                                 <Stack onClick={deletePost} py='11px' px='10px' direction='row' alignItems='center' justifyContent='space-between'>
@@ -458,7 +460,11 @@ const Post = ({id, imageUrl, username, caption, likes, currentUsername, currentU
                 })}
                 <Stack className='addComment' direction='row' alignItems='center' spacing={2}>
                     {/* <Avatar className='userAvatarComment' src={postUsernameProfileData?.profilePic} alt={postUsernameProfileData?.fullname}/> */}
-                    <input onChange={handelComment} className='commentInput' type='text' placeholder='Add a comment' value={comment}/>
+                    <input onKeyUp={(key) => {
+                        if(key.code == 'Enter' && comment.length != 0){
+                            postComment()
+                        }
+                    }} onChange={handelComment} className='commentInput' type='text' placeholder='Add a comment' value={comment}/>
                     <i onClick={postComment} class="bi bi-arrow-right-circle-fill postBtn" style={{visibility: comment?.length==0 ? 'hidden': 'visible'}}></i>
                 </Stack>
             </Stack>
