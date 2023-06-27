@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useContext, useEffect, useState} from 'react'
 import ScoreBoard from './ScoreBoard'
 import blueCandy from '../Images/blue-candy.png'
 import greenCandy from '../Images/green-candy.png'
@@ -8,6 +8,13 @@ import redCandy from '../Images/red-candy.png'
 import yellowCandy from '../Images/yellow-candy.png'
 import blank from '../Images/blank.png'
 import '../stylesheets/candy.css'
+import Navbar from './Navbar'
+import SideBar from './SideBar'
+import NotificationModal from './NotificationModal'
+import { Box } from '@mui/material'
+import { userDataContext } from '../App'
+import ccDesign from '../Images/ccDesign.png'
+import '../stylesheets/mediaQueryHome.css'
 
 const width = 8
 const candyColors = [
@@ -24,6 +31,7 @@ const CandyCrush = () => {
     const [squareBeingDragged, setSquareBeingDragged] = useState(null)
     const [squareBeingReplaced, setSquareBeingReplaced] = useState(null)
     const [scoreDisplay, setScoreDisplay] = useState(0)
+    const {currentUser, notificationModalDisplay, setNotificationModalDisplay, currentSelect} = useContext(userDataContext)
 
     const checkForColumnOfFour = () => {
         for (let i = 0; i <= 39; i++) {
@@ -171,26 +179,45 @@ const CandyCrush = () => {
 
 
     return (
-        <div className="CandyCrush">
-            <div className="game">
-                {currentColorArrangement.map((candyColor, index) => (
-                    <img
-                        key={index}
-                        src={candyColor}
-                        alt={candyColor}
-                        data-id={index}
-                        draggable={true}
-                        onDragStart={dragStart}
-                        onDragOver={(e) => e.preventDefault()}
-                        onDragEnter={(e) => e.preventDefault()}
-                        onDragLeave={(e) => e.preventDefault()}
-                        onDrop={dragDrop}
-                        onDragEnd={dragEnd}
-                    />
-                ))}
+        <>
+            <Navbar/>
+            <div className='mainHomeBox' >
+                {/* sidebar */}
+                <Box className='leftsideBar'>
+                    <SideBar currentUsername={currentUser?.displayName} setNotificationModalDisplay={setNotificationModalDisplay}/>
+                </Box>
+
+                {/* game section */}
+                <div className="userProfileMainBox">
+                    <img className='ccBG' src={ccDesign}/>
+                    <div className="game">
+                        {currentColorArrangement.map((candyColor, index) => (
+                            <img
+                                key={index}
+                                src={candyColor}
+                                alt={candyColor}
+                                data-id={index}
+                                draggable={true}
+                                onDragStart={dragStart}
+                                onDragOver={(e) => e.preventDefault()}
+                                onDragEnter={(e) => e.preventDefault()}
+                                onDragLeave={(e) => e.preventDefault()}
+                                onDrop={dragDrop}
+                                onDragEnd={dragEnd}
+                            />
+                        ))}
+                    </div>
+
+                    <div className='scoreBox'>
+                        <p>{`Current Score: ${scoreDisplay}`}</p>
+                    </div>
+                </div>
             </div>
-            <ScoreBoard score={scoreDisplay}/>
-        </div>
+
+            {notificationModalDisplay?.open == true &&
+                <NotificationModal content={notificationModalDisplay?.content} type={currentSelect} setNotificationModalDisplay={setNotificationModalDisplay}/>
+            }
+        </>
     )
 }
 

@@ -1,25 +1,39 @@
-.CandyCrush {
-    display: flex;
-    padding: 30px;
-    padding-left: 100px;
-    justify-content: space-between;
-    
-  }
   
+  .ccBG{
+    width: 100vw;
+    height: calc(100vh - 62px);
+  }
+
   .game {
-    width: 562px;
-    height: 562px;
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    /* transform: translate(-50%, -50%); */
+    width: 450px;
+    height: 450px;
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid rgb(238, 238, 238);
-    background-color: #ffffff;
-    border-radius: 10px;
+    border: 1px solid #e7e7e7e1;
+    background-color: #ffffffb6;
+    border-radius: 5px;
   }
   
   .game img {
-    width: 70px;
-    height: 70px;
-    border: 1px solid #ececec;
-    padding: 10px;
-    border-radius: 8px;
+    width: 56px;
+    height: 56px;
+    border: 1px outset #9e9e9e28;
+    padding: 9.5px;
+    border-radius: 5px;
+  }
+
+  .scoreBox{
+    position: absolute;
+    bottom: 5%;
+    right: 2.5%;
+    border: 1px solid #888;
+    background-color: rgba(238, 238, 238, 0.658);
+    border-radius: 5px;
+    padding: 20px 50px;
+    font-size: 16px;
+    font-weight: 600;
   }
