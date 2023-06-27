@@ -79,7 +79,7 @@ const Post = ({id, imageUrl, username, caption, likes, currentUsername, currentU
                 username: currentUserProfileData?.username,
                 profilePic: currentUserProfileData?.profilePic,
                 post: imageUrl,
-                msg: `has commented your post: ${comment}`,
+                msg: `has commented on your post: ${comment}`,
                 time: firebase.firestore.Timestamp.now()
             })
         })
