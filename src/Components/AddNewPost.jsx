@@ -195,9 +195,9 @@ function AddNewPost({username}){
                      </div>
                     }
                     <Stack px='20px' direction='row' alignItems='center' justifyContent='space-between'>
-                        <i onClick={closeCreate} className='bi bi-arrow-left' style={{fontSize: '20px'}}></i>
+                        <i onClick={closeCreate} className='bi bi-arrow-left btnCursor' style={{fontSize: '20px'}}></i>
                         <p style={{textAlign: 'center', fontWeight: '500', padding: '13px 0px', fontSize: '16px'}}>Create new post</p>
-                        <p className='newPostShareBtn' onClick={newPostToFirebase}>Share post</p>
+                        <p className='newPostShareBtn btnCursor' onClick={newPostToFirebase}>Share post</p>
                         <p className='newPostNextBtn' onClick={newPostNextBtn} >Next</p>
                     </Stack>  
                     <Box style={{borderTop: '1px solid #ddd'}}></Box>
@@ -242,7 +242,7 @@ function AddNewPost({username}){
                                 </Box>
                                 <div className='selectImage'>
                                     <BsImages style={{width: '20px', height: '20px'}}/>
-                                    <label className='buttonText' htmlFor='newPost'>Select Image or Video</label>
+                                    <label className='buttonText btnCursor' htmlFor='newPost'>Select Image or Video</label>
                                     <input onChange={handleFile} accept="image/*, video/*" id='newPost' type='file' style={{display: 'none'}}/>
                                 </div>
                             </Box>

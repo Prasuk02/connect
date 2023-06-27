@@ -168,12 +168,12 @@ const UserProfile = () => {
                                         <p className='profileUserPFFData'>Posts</p>
                                         </div>
                                         {/* no. of followers */}
-                                        <div onClick={showFollowers} className='profileUserPFF'>
+                                        <div onClick={showFollowers} className='profileUserPFF btnCursor'>
                                         <p className='profileUserPFFData' style={{fontWeight: '600'}}>{userProfileData?.followers?.length}</p>
                                         <p className='profileUserPFFData'>Followers</p>
                                         </div>
                                         {/* no. of followings */}
-                                        <div onClick={showFollowing} className='profileUserPFF'>
+                                        <div onClick={showFollowing} className='profileUserPFF btnCursor'>
                                         <p className='profileUserPFFData' style={{fontWeight: '600'}}>{userProfileData?.following?.length}</p>
                                         <p className='profileUserPFFData'>Following</p>
                                         </div>

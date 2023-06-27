@@ -367,19 +367,19 @@ const Post = ({id, imageUrl, username, caption, likes, currentUsername, currentU
                             </Link>
                             {currentUsername !== username ?
                                 currentUserProfileData?.following?.some(user => user.followingUsername == username) ? 
-                                    <p className='postfollowingBtn fontType'>Following</p>
+                                    <p className='postfollowingBtn btnCursor'>Following</p>
                                     :
                                     postUsernameProfileData?.requests?.some(user => user.reqUsername == currentUserProfileData?.username) ? 
-                                    <p onClick={deleteFollowRequest} className='postreqBtn fontType'>Requested</p>
+                                    <p onClick={deleteFollowRequest} className='postreqBtn btnCursor'>Requested</p>
                                     :
-                                    <p onClick={sendFollowRequest} className='postfollowBtn fontType'>Follow</p>
+                                    <p onClick={sendFollowRequest} className='postfollowBtn btnCursor'>Follow</p>
                                 : ''
                             }
                         </Stack>
 
                     <Box className='optionMainBox' style={{position: 'relative'}}>
                         {username == currentUserProfileData?.username && 
-                            <i class="bi bi-three-dots-vertical postThreeDotIcon"></i>
+                            <i class="bi bi-three-dots-vertical postThreeDotIcon btnCursor"></i>
                         }
                         <Box className='optionBox'>
                             {currentUsername == username &&
@@ -425,10 +425,10 @@ const Post = ({id, imageUrl, username, caption, likes, currentUsername, currentU
                         </Box>
                     }
                     {imageIndex != 0 &&
-                        <i onClick={() => setImageIndex(imageIndex - 1)} className="bi bi-caret-left-fill nextPrevIcon" style={{left: '10px'}}></i>
+                        <i onClick={() => setImageIndex(imageIndex - 1)} className="bi bi-caret-left-fill nextPrevIcon btnCursor" style={{left: '10px'}}></i>
                     }
                     {imageIndex != imageUrl.length - 1 &&
-                        <i onClick={() => setImageIndex(imageIndex + 1)} className="bi bi-caret-right-fill nextPrevIcon" style={{right: '10px'}}></i>
+                        <i onClick={() => setImageIndex(imageIndex + 1)} className="bi bi-caret-right-fill nextPrevIcon btnCursor" style={{right: '10px'}}></i>
                     }
                     {imageUrl.length > 1 &&
                         <Stack direction='row' alignItems='center' spacing={1}style={{position: 'absolute', bottom: '16px', left: '50%', transform: 'translate(-50%, 0%)'}}>
@@ -463,7 +463,7 @@ const Post = ({id, imageUrl, username, caption, likes, currentUsername, currentU
                 <p className='captionText'><span className='username'>{username}</span> {caption}</p>
 
                 {/* Comments */}
-                <p onClick={seeComments} className='commentText'>View all comments</p>
+                <p onClick={seeComments} className='commentText btnCursor'>View all comments</p>
                 {commentList?.slice(0, 2)?.map((element) => {
                     return(
                         <p className='captionText'><span className='username'>{element.username} </span>{element.comment}</p>
@@ -476,7 +476,7 @@ const Post = ({id, imageUrl, username, caption, likes, currentUsername, currentU
                             postComment()
                         }
                     }} onChange={handelComment} className='commentInput' type='text' placeholder='Add a comment' value={comment}/>
-                    <i onClick={postComment} class="bi bi-arrow-right-circle-fill postBtn" style={{visibility: comment?.length==0 ? 'hidden': 'visible'}}></i>
+                    <i onClick={postComment} class="bi bi-arrow-right-circle-fill postBtn btnCursor" style={{visibility: comment?.length==0 ? 'hidden': 'visible'}}></i>
                 </Stack>
             </Stack>
         </Box>

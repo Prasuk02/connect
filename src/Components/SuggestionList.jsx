@@ -70,9 +70,9 @@ const SuggestionList = ({suggestionId}) => {
                     <p className='friendReqFullname'>{suggestionIdDetails?.fullname}</p>
                     </Stack>
                     {suggestionIdDetails?.requests?.some(user => user.reqUsername == currentUserProfileData?.username) ?  
-                        <p onClick={deleteFollowRequest} className='postreqBtn'>Requested</p>
+                        <p onClick={deleteFollowRequest} className='postreqBtn btnCursor'>Requested</p>
                         :
-                        <p onClick={sendFollowRequest} className='postfollowBtn'>Follow</p>
+                        <p onClick={sendFollowRequest} className='postfollowBtn btnCursor'>Follow</p>
                     }
                 </Stack>
             </Stack>

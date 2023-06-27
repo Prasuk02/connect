@@ -1,20 +1,31 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Stack, Box, Avatar, Button, Backdrop} from '@mui/material'
 import SinglePost from './SinglePost'
 import '../stylesheets/userProfile.css'
 import ReactPlayer from 'react-player'
 import {IoIosPhotos} from 'react-icons/io'
+import { db } from '../firebase'
 
 const ProfilePost = ({data, currentUser, id}) => {
     const [display, setDisplay] = useState(false)
     const [comment, setComment] = useState('')
     const [commentList, setCommentList] = useState([])
     const [isLike, setIsLike] = useState(false)
+    const [totalComments, setTotalComments] = useState([])
 
     const openImg = () => {
         console.log('clicked')
         setDisplay(true)
     }
+
+    useEffect(() => {
+        db.collection('posts').doc(id).collection('comments').onSnapshot((snapshot) => {
+            setTotalComments(snapshot.docs.map((doc) => {
+                doc.id
+            }))
+        })
+    }, [])
+
     console.log(data)
   return (
     <>
@@ -33,13 +44,13 @@ const ProfilePost = ({data, currentUser, id}) => {
 
             <Box className='imageLike_comment'>
                 <Stack m='auto' width='max-content' direction='row' alignItems='center' spacing={3.5}>
-                    <Stack direction='row' alignItems='center' spacing={1}>
+                    <Stack className='btnNoCursor' direction='row' alignItems='center' spacing={1}>
                         <p className='bi bi-heart-fill' style={{fontSize: '20px'}}></p>
-                        <p className='fontType' style={{fontSize: '16px', fontWeight: '600'}}>{data?.postData?.likes}</p>
+                        <p style={{fontSize: '16px', fontWeight: '600'}}>{data?.postData?.likes}</p>
                     </Stack>
-                    <Stack direction='row' alignItems='center' spacing={1}>
+                    <Stack className='btnNoCursor' direction='row' alignItems='center' spacing={1}>
                         <p className='bi bi-chat-right-text-fill' style={{fontSize: '20px'}}></p>
-                        <p className='fontType' style={{fontSize: '16px', fontWeight: '600'}}>1k</p>
+                        <p style={{fontSize: '16px', fontWeight: '600'}}>{totalComments?.length}</p>
                     </Stack>
                 </Stack>
             </Box>

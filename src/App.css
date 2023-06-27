@@ -10,6 +10,14 @@ body{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.btnCursor:hover{
+  cursor: pointer;
+}
+
+.btnNoCursor{
+  cursor: default;
+}
+
 /* @media screen and (max-width: 1024px){
   body{
     background-color: white;

@@ -28,7 +28,7 @@ const SideBar = ({currentUsername, setNotificationModalDisplay}) => {
                 })}
             </aside>
 
-            <aside className='moreBtn'>
+            <aside className='moreBtn btnCursor'>
                 <p className='menuIcon'><AiOutlineMenu style={{color: '#262626', fontSize: '27px'}}/></p>
                 <p className='moreOptionText sidebarElementName'>More</p>
                 <Box className='moreOptions'>
