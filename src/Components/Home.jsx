@@ -41,7 +41,7 @@ const Home = () => {
                             username: authUser?.displayName?.replace(' ', '_')?.toLowerCase(),
                             fullname: '',
                             email: authUser?.providerData[0]?.email,
-                            post: [],
+                            post: 0,
                             followers: [],
                             following: [],
                             requests: [],
@@ -54,6 +54,16 @@ const Home = () => {
                             setAlertDisplay({
                                 status: 'success',
                                 msg: 'Login Successful',
+                                open: true
+                            })
+                        })
+                        .then(() => {
+                            authUser.sendEmailVerification()
+                        })
+                        .then(() => {
+                            setAlertDisplay({
+                                status: 'success',
+                                msg: 'Email verification has been sent successfully',
                                 open: true
                             })
                         })
@@ -74,7 +84,7 @@ const Home = () => {
                         username: signupCredentials.username,
                         fullname: signupCredentials.fullname,
                         email: signupCredentials.loginId,
-                        post: [],
+                        post: 0,
                         followers: [],
                         following: [],
                         requests: [],
@@ -93,9 +103,13 @@ const Home = () => {
                     .then(() => {
                         authUser.sendEmailVerification()
                     })
-                    .then(
-                        console.log("EMAIL VERIFICATION LINK HAS BEEN SENT")
-                    )
+                    .then(() => {
+                        setAlertDisplay({
+                            status: 'success',
+                            msg: 'Email verification has been sent successfully',
+                            open: true
+                        })
+                    })
                     .catch(error => console.log(error))
                 }
 

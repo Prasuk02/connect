@@ -51,7 +51,7 @@ const RightSideBar = ({username, currentUserProfileData}) => {
                   {/* no. of posts */}
                   <Stack alignItems='center'>
                     <p className='rightUserDetailHeading'>Posts</p>
-                    <p className='rightUserDetail'>{currentUserProfileData?.post?.length}</p>
+                    <p className='rightUserDetail'>{currentUserProfileData?.post}</p>
                   </Stack>
                   {/* no. of followers */}
                   <Stack alignItems='center' ml='5px'>

@@ -73,8 +73,8 @@ const SidebarBox = ({element, currentUsername, setNotificationModalDisplay}) => 
                     <Stack onClick={menuClick} direction='row' alignItems='center' spacing={2.3} pt='6px' pb='14px' pl='12px' borderRadius='10px' position='relative'>
                         <p className={`${element.icon} sidebarElementIcon`}></p>
                         <p className='sidebarElementName'>{element.name}</p>
-                        <Badge color="error" badgeContent={totalNotifications}  style={{position: 'absolute', top: '9px', left: '21px'}}>
-                        </Badge>
+                        {/* <Badge color="error" badgeContent={totalNotifications}  style={{position: 'absolute', top: '9px', left: '21px'}}>
+                        </Badge> */}
                     </Stack>
             : 
             <Link to={`/user/${currentUsername}`} style={{textDecoration: 'none'}}>

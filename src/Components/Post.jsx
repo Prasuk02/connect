@@ -71,9 +71,20 @@ const Post = ({id, imageUrl, username, caption, likes, currentUsername, currentU
                 msg: 'Comment added successfully',
                 open: true
             })
-            setComment('')
         }
         )
+
+        db.collection('usersData').doc(username).update({
+            notification: arrayUnion({
+                username: currentUserProfileData?.username,
+                profilePic: currentUserProfileData?.profilePic,
+                post: imageUrl,
+                msg: `has commented your post: ${comment}`,
+                time: firebase.firestore.Timestamp.now()
+            })
+        })
+
+        setComment('')
     }
 
     useEffect(() => {
@@ -98,15 +109,15 @@ const Post = ({id, imageUrl, username, caption, likes, currentUsername, currentU
                     })
                 })
 
-                db.collection('usersData').doc(username).update({
-                    notification: arrayUnion({
-                        username: currentUserProfileData?.username,
-                        profilePic: currentUserProfileData?.profilePic,
-                        post: imageUrl,
-                        msg: 'has unliked your post',
-                        time: firebase.firestore.Timestamp.now()
-                    })
-                })
+                // db.collection('usersData').doc(username).update({
+                //     notification: arrayUnion({
+                //         username: currentUserProfileData?.username,
+                //         profilePic: currentUserProfileData?.profilePic,
+                //         post: imageUrl,
+                //         msg: 'has unliked your post',
+                //         time: firebase.firestore.Timestamp.now()
+                //     })
+                // })
 
                 db.collection('usersData').doc(currentUsername).update({
                     postsLiked: firebase.firestore.FieldValue.arrayRemove({

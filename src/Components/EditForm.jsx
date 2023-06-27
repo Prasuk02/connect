@@ -2,11 +2,9 @@ import React, {useContext, useState } from 'react'
 import {Box, Stack, Button, Backdrop, Avatar} from '@mui/material'
 import { db, storage } from '../firebase'
 import '../stylesheets/editForm.css'
-import { userDataContext } from '../App'
-import loaderIcon from '../Images/loaderIcon.gif'
 
 const EditForm = ({setEditFormStatus, userProfileData, alertDisplay, setAlertDisplay}) => {
-  // const {loader, setLoader} = useContext(userDataContext)
+  const [uploadingPost, setUploadingPost] = useState(false)
   const {fullname, biodata, biolink} = userProfileData
   // console.log(fullname)
   const [editDetails, setEditDetails] = useState({
@@ -36,7 +34,7 @@ const EditForm = ({setEditFormStatus, userProfileData, alertDisplay, setAlertDis
   }
 
   const updateProfileDb = () => {
-    // setLoader(true)
+    setUploadingPost(true)
     let bio = editDetails?.biodata?.split('\n')
 
     {profileImgUrl?
@@ -171,11 +169,12 @@ const EditForm = ({setEditFormStatus, userProfileData, alertDisplay, setAlertDis
         </Stack>
 
 
-        {/* {loader && 
-          <Backdrop open='true' sx={{zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-            <img src={loaderIcon} width='120px'/>
-          </Backdrop>
-        } */}
+        {uploadingPost && 
+          <div style={{position: 'absolute', top: '0px', left: '0px', backgroundColor: '#eeeeee75', width: '100%', height: '100%', borderRadius: '6px'}}>
+            <div class="spinner" style={{position: 'absolute', top: '45%', left: '47%'}}>
+            </div>
+          </div>
+        }
     </Box>
   )
 }

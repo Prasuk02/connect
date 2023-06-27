@@ -16,6 +16,7 @@ function AddNewPost({username}){
     const [prevKey, setPrevKey] = useState(0)
     const [docId, setDocId] = useState('')
     const [postCategories, setPostCategories] = useState(['All'])
+    const [uploadingPost, setUploadingPost] = useState(false)
 
     const handleCaption = (event) => {
         setCaption(event.target.value)
@@ -64,6 +65,7 @@ function AddNewPost({username}){
 
     const newPostToFirebase = async() => {
             if(imageUrl.length > 0){
+                setUploadingPost(true)
                 document.getElementsByClassName('newPostShareBtn')[0].disabled = true
                 storage.ref(`images/${imageUrl[0].name}`).put(imageUrl[0]).then((snapshot) => {
                     console.log('Uploaded file in storage');
@@ -83,6 +85,11 @@ function AddNewPost({username}){
                                     time: serverTimestamp()
                                 })
                                 setDocId(docRef.id)
+                           })
+                           .then(() => {
+                            db.collection('usersData').doc(currentUserProfileData?.username).update({
+                                post: currentUserProfileData?.post + 1
+                            })
                            })
                            .then(() => {
                             if(imageUrl.length == 1){
@@ -115,11 +122,8 @@ function AddNewPost({username}){
     }
     
     useEffect(() => {
-        if(docId != ''){
+        // if(docId != ''){
             console.log(docId)
-            db.collection('usersData').doc(currentUserProfileData?.username).update({
-                post: arrayUnion(docId)
-            })
             if(imageUrl.length > 1){
                 for(let img=1; img < imageUrl.length; img++){
                     console.log("USE EFFECT CALLED USE EFFECT CALLED USE EFFECT CALLED USE EFFECT CALLED USE EFFECT CALLED ")
@@ -158,7 +162,7 @@ function AddNewPost({username}){
                     })
                 }
             }
-        }
+        // }
         document.getElementsByClassName('newPostShareBtn')[0].disabled = false
     }, [docId])
 
@@ -183,6 +187,13 @@ function AddNewPost({username}){
         <>
             <Backdrop open='true' sx={{zIndex: (theme) => theme.zIndex.drawer + 1 }}>
                 <Box className="createPostMainBox">
+                    {uploadingPost && 
+                     <div style={{position: 'absolute', top: '0px', left: '0px', backgroundColor: '#eeeeee75', width: '100%', height: '100%', border: 'none'}}>
+                        <div class="spinner">
+                        
+                      </div>
+                     </div>
+                    }
                     <Stack px='20px' direction='row' alignItems='center' justifyContent='space-between'>
                         <i onClick={closeCreate} className='bi bi-arrow-left' style={{fontSize: '20px'}}></i>
                         <p style={{textAlign: 'center', fontWeight: '500', padding: '13px 0px', fontSize: '16px'}}>Create new post</p>
@@ -206,7 +217,7 @@ function AddNewPost({username}){
                                 <Stack width='100%' mt='15px' px='23px' direction='row' alignItems='center' flexWrap='wrap'>
                                     {preview.map((prev, key) => {
                                         return(
-                                            <Stack height='85px' width='70px' marginRight='15px' marginBottom='15px' border= '1px solid #aaaaaa' borderRadius='5px' justifyContent='center' position='relative'>
+                                            <Stack height='85px' width='70px' marginRight='13px' marginBottom='15px' border= '1px solid #aaaaaa' borderRadius='5px' justifyContent='center' position='relative'>
                                                 {prev.type == 'image' ? 
                                                     <img onClick={() => displayImg(key)} src={prev.url} class="previewImage" style={{minHeight: '60px'}}/>
                                                     :

@@ -17,7 +17,7 @@ const Modal = ({open, heading, content, setModalDisplay}) => {
     <>
         <Backdrop open={open} sx={{zIndex: (theme) => theme.zIndex.drawer + 1 }}>
             <Box className='mainContainer'>
-                <Stack py='10px' alignItems='center' justifyContent='space-evenly' borderBottom='1px solid #ddd'>
+                <Stack py='13px' alignItems='center' justifyContent='space-evenly' borderBottom='1px solid #ddd'>
                     <p className='heading'>{heading}</p>
                 </Stack>
 
@@ -26,17 +26,25 @@ const Modal = ({open, heading, content, setModalDisplay}) => {
                         if(list.hasOwnProperty('followerUsername') || list.hasOwnProperty('followingUsername'))
                         {
                             return(
-                                <Stack mt='10px' pr='5px' direction='row' alignItems='center'>
+                                <Stack mt='10px' pr='5px' direction='row' alignItems='center' px='20px'>
                                     <Avatar src={list.hasOwnProperty('followerProfilePic') ? list.followerProfilePic : list.followingProfilePic} alt={list.hasOwnProperty('followerFullname') ? list.followerUsername : list.followingFullname}/>
                                     
                                     <Stack width='100%' direction='row' alignItems='center' justifyContent='space-between'>
                                         
                                         <Stack ml='12px'>
-                                        <p className='fontType' style={{fontSize: '16px', color: '#111', fontWeight: '600'}}>{list.hasOwnProperty('followerUsername') ? list.followerUsername : list.followingUsername}</p>
+                                        <p className='fontType' style={{fontSize: '15px', color: '#111', fontWeight: '600'}}>{list.hasOwnProperty('followerUsername') ? list.followerUsername : list.followingUsername}</p>
                                         <p className='fontType' style={{fontSize: '12.5px', color: '#777'}}>{list.hasOwnProperty('followerFullname') ? list.followerFullname : list.followingFullname}</p>
                                         </Stack>
         
-                                        <p className='followBtn fontType'>Follow</p>
+                                        {/* {currentUserProfileData?.following?.some(user => user.followingUsername == username) ? 
+                                            <p className='postfollowingBtn fontType'>Following</p>
+                                            :
+                                            postUsernameProfileData?.requests?.some(user => user.reqUsername == currentUserProfileData?.username) ? 
+                                            <p  className='postreqBtn fontType'>Requested</p>
+                                            :
+                                            <p  className='postfollowBtn fontType'>Follow</p>
+                                        } */}
+                                        <p className='postfollowingBtn fontType'>Following</p>
                                     </Stack>
                                 </Stack>
                             )
@@ -44,7 +52,9 @@ const Modal = ({open, heading, content, setModalDisplay}) => {
                         else if(list.hasOwnProperty('reqUsername'))
                         {
                             return(
-                                <FriendRequestList reqFullname={list.reqFullname} reqUsername={list.reqUsername} reqProfilePic={list.reqProfilePic} currentUserProfileData={currentUserProfileData}/>
+                                <Box px='20px'>
+                                    <FriendRequestList reqFullname={list.reqFullname} reqUsername={list.reqUsername} reqProfilePic={list.reqProfilePic} currentUserProfileData={currentUserProfileData}/>
+                                </Box>
                             )
                         }
                     })

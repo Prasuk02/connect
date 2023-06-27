@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Backdrop, Box, Stack, Avatar} from '@mui/material'
 import '../stylesheets/chatUserFinder.css'
 import ChatUserBox from './ChatUserBox'
+import { userDataContext } from '../App'
 
 const ChatUserFinder = ({allUsersData, setOpenAllUsers, setCurrentChat, currentChat, chatDetails, setChatDetails, setChatOpen}) => {
 
     const [searchProfileText, setSearchProfileText] = useState('')
+    const {currentUserProfileData} = useContext(userDataContext)
 
     const closeList = () => {
         setOpenAllUsers(0)
@@ -31,7 +33,7 @@ const ChatUserFinder = ({allUsersData, setOpenAllUsers, setCurrentChat, currentC
                 <Box p='10px 0px' style={{height: '296px', overflow: 'hidden auto'}}>
                     {allUsersData?.map(element => {
                         return(
-                            ((element?.userId?.toLowerCase().includes(searchProfileText.toLowerCase()) || element?.userData?.fullname?.toLowerCase().includes(searchProfileText.toLowerCase()))) &&
+                            ((element?.userId?.toLowerCase().includes(searchProfileText.toLowerCase()) || element?.userData?.fullname?.toLowerCase().includes(searchProfileText.toLowerCase())) && (element?.userId != currentUserProfileData?.username)) &&
                             <ChatUserBox
                                 userData={element?.userData} 
                                 setCurrentChat={setCurrentChat} 
