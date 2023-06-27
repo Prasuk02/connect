@@ -21,16 +21,6 @@
     z-index: 0;
 }
 
-@media screen and (max-width: 1400px){
-    .rightSideBar{
-        width: 35%;
-    }
-
-    .leftsideBar{
-        width: 20%;
-    }
-}
-
 @media screen and (max-width: 1200px){
     .rightSideBar{
         width: 35%;
